@@ -42,8 +42,7 @@ Before getting starting, ensure you have the following:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/infinity.run.git
-   cd infinity.run
+   git clone https://github.com/yashcode4/Infinity.Run.git
 
 2. **Install the dependencies**:
    ```bash
