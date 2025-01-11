@@ -21,7 +21,7 @@ const Navbar = () => {
                         <Link aria-current="page" to="/About">About</Link>
                     </li>
                     <li>
-                        <Link aria-current="page" to="https://github.com/yashcode4/" target="_blank">Github</Link>
+                        <Link aria-current="page" to="https://github.com/yashcode4/Infinity.Run/" target="_blank">Github</Link>
                     </li>
                     <li>
                         <Link aria-current="page" to="https://www.linkedin.com/in/yash-kumar-yk/" target="_blank">LinkedIn</Link>
