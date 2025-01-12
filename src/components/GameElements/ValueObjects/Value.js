@@ -4,7 +4,7 @@ export default class Value {
     constructor(ctx, player) {
         this.ctx = ctx;
         this.x = 155;
-        this.y = 125;
+        this.y = 127;
 
         this.player = player;
 
