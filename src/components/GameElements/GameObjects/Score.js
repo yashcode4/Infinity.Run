@@ -28,15 +28,15 @@ export default class Score {
         const highScore = Number(localStorage.getItem(this.HIGHT_SCORE_KEY));
         const y = 25;
 
-        this.ctx.font = `25px Calibri`;
+        this.ctx.font = `15px 'Press Start 2P'`;
         this.ctx.fillStyle = "white";
 
-        const scoreX = this.canvas.width - 90;
-        const highScoreX = scoreX - 125;
+        const scoreX = this.canvas.width - 75;
+        const highScoreX = scoreX - 135;
 
         // Format score and high score
-        const scorePadded = Math.floor(this.score).toString().padStart(6, 0);
-        const highScorePadded = highScore.toString().padStart(6, 0);
+        const scorePadded = Math.floor(this.score).toString().padStart(5, 0);
+        const highScorePadded = highScore.toString().padStart(5, 0);
 
         this.ctx.fillText(scorePadded, scoreX, y);
         this.ctx.fillText(`HI ${highScorePadded}`, highScoreX, y);
