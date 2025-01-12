@@ -44,7 +44,7 @@ export default class ObsController {
 
         // Calculate obstacle's starting position
         const x = this.canvas.width * 1.5;
-        const y = this.canvas.height - obstacleImage.height - 2;
+        const y = this.canvas.height - obstacleImage.height;
 
         // Create and add a new obstacle instance
         const obstacle = new Obstacle(

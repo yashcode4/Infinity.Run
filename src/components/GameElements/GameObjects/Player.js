@@ -13,7 +13,7 @@ export default class Player {
         this.maxJumpHeight = maxJumpHeight;
 
         this.x = 20; // Starting x position
-        this.y = this.canvas.height - this.height - 2; // Starting y position
+        this.y = this.canvas.height - this.height; // Starting y position
         this.yStandingPosition = this.y;
 
         // Standing Image
