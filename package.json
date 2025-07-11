@@ -1,12 +1,11 @@
 {
   "name": "infinity.run",
   "version": "0.1.0",
+  "main": "src/electron.js",
   "author": "Yash Kumar",
   "private": true,
   "dependencies": {
     "cra-template": "1.2.0",
-    "install": "^0.13.0",
-    "npm": "^11.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1",
@@ -17,7 +16,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dist": "npm run build && electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +37,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^37.2.1",
+    "electron-builder": "^26.0.12",
+    "install": "^0.13.0",
+    "npm": "^11.4.2"
+  },
+  "build": {
+    "appId": "com.infinity.run",
+    "productName": "InfinityRun",
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*",
+      "electron.js"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/favicon.ico"
+    }
   }
 }
