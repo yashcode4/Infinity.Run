@@ -1,7 +1,6 @@
 {
   "name": "infinity.run",
   "version": "0.1.0",
-  "main": "src/electron.js",
   "author": "Yash Kumar",
   "private": true,
   "dependencies": {
@@ -14,12 +13,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron .",
-    "dist": "npm run build && electron-builder",
-    "dev": "react-scripts start"
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
   },
   "browserslist": {
     "production": [
@@ -34,11 +33,7 @@
     ]
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2.6.2",
-    "electron": "^37.2.1",
-    "electron-builder": "^26.0.12",
-    "install": "^0.13.0",
-    "npm": "^11.4.2"
+    "@tauri-apps/cli": "^2.6.2"
   },
   "build": {
     "appId": "com.infinity.run",
