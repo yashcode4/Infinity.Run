@@ -50,6 +50,15 @@ export default class Player {
     update(gameSpeed, frameTimeDelta) {
         this.run(gameSpeed, frameTimeDelta);
         this.jump(frameTimeDelta);
+
+        // Move player back to original position after jump
+        if (!this.jumpInProgress && !this.falling && this.x > 20) {
+            this.x -= gameSpeed * frameTimeDelta * 0.01; // Slide back to original position
+
+            if (this.x < 20) {
+                this.x = 20; // Clamp to original position
+            }
+        }
     }
 
     // Jump logics
@@ -62,12 +71,15 @@ export default class Player {
             if (this.y > this.canvas.height - this.minJumpHeight ||
                 (this.y > this.canvas.height - this.maxJumpHeight && this.jumpPressed)) {
                 this.y -= this.JUMP_SPEED * frameTimeDelta;
+                this.x += 0.05 * frameTimeDelta; // Slight right movement while going up
             } else {
                 this.falling = true; // Start falling after reaching peak
             }
         } else if (this.y < this.yStandingPosition) {
             // If player is falling, apply gravity
             this.y += this.GRAVITY * frameTimeDelta;
+            this.x += 0.03 * frameTimeDelta; // Continue slight right movement while falling
+
             if (this.y >= this.yStandingPosition) {
                 // Once player reaches ground, stop falling and reset state
                 this.y = this.yStandingPosition;
@@ -100,5 +112,8 @@ export default class Player {
         this.jumpPressed = false;
         this.jumpInProgress = false;
         this.falling = false;
+
+        // Reset X position back to original
+        this.x = 20;
     }
 }
