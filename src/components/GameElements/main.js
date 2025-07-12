@@ -185,14 +185,21 @@ export default function main() {
         const fontSize = 120;
         ctx.font = `${fontSize}px Pixelify Sans`;
         ctx.fillStyle = "white";
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 5;
+
         const x = 335;
         const y = 85;
+
+        ctx.strokeText("GAME OVER", x, y);
         ctx.fillText("GAME OVER", x, y);
 
         const fontSize2 = 30;
         ctx.font = `${fontSize2}px Pixelify Sans`;
         const x2 = 500;
         const y2 = 120;
+
+        ctx.strokeText("Space for Restart", x2, y2);
         ctx.fillText("Space for Restart", x2, y2);
     }
 
