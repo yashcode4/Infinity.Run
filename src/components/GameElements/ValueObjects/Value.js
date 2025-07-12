@@ -64,6 +64,12 @@ export default class Value {
 
     // Handle keydown event for input
     keydown = (event) => {
+        // Cancel jump if NumLock or CapsLock is pressed
+        if (event.key === "NumLock" || event.key === "CapsLock") {
+            this.player.jumpPressed = false;
+            return; // Don't process further
+        }
+
         // If input is disabled, prevent input
         if (this.inputDisabled) return;
 
