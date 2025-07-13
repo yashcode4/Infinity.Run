@@ -176,7 +176,7 @@ export default function main() {
         ctx.font = `${fontSize}px Pixelify Sans`;
         ctx.fillStyle = "white";
         const x = 213;
-        const y = 115;
+        const y = 108;
         ctx.fillText("Press Right Key To Start", x, y);
     }
 
@@ -189,7 +189,7 @@ export default function main() {
         ctx.lineWidth = 5;
 
         const x = 335;
-        const y = 85;
+        const y = 78;
 
         ctx.strokeText("GAME OVER", x, y);
         ctx.fillText("GAME OVER", x, y);
