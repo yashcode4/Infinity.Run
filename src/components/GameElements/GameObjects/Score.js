@@ -26,12 +26,12 @@ export default class Score {
 
     draw() {
         const highScore = Number(localStorage.getItem(this.HIGHT_SCORE_KEY));
-        const y = 25;
+        const y = 18;
 
-        this.ctx.font = `15px 'Press Start 2P'`;
+        this.ctx.font = `16px 'Press Start 2P'`;
         this.ctx.fillStyle = "white";
 
-        const scoreX = this.canvas.width - 75;
+        const scoreX = this.canvas.width - 80;
         const highScoreX = scoreX - 135;
 
         // Format score and high score
