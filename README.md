@@ -72,13 +72,13 @@ Infinity.Run is now available as a native desktop application using [Tauri](http
 
 Choose the format based on your preference or system:
 
-- [Infinity.Run Portable (.exe)](https://github.com/yashcode4/Infinity.Run/releases/latest)  
+- [Infinity.Run Portable (.exe) - 8.5 MB](https://github.com/yashcode4/Infinity.Run/releases/latest)  
   Just download and play – no installation needed.
 
-- [Infinity.Run Installer (.msi)](https://github.com/yashcode4/Infinity.Run/releases/latest)  
+- [Infinity.Run Installer (.msi) - 3.2 MB](https://github.com/yashcode4/Infinity.Run/releases/latest)  
   Standard Windows installer – recommended.
 
-- [Infinity.Run NSIS Installer (.exe)](https://github.com/yashcode4/Infinity.Run/releases/latest)  
+- [Infinity.Run NSIS Installer (.exe) - 2.3 MB](https://github.com/yashcode4/Infinity.Run/releases/latest)  
   Alternative Windows installer using NSIS.
 
 > 📦 You can find all the latest release builds under the **[Releases](https://github.com/yashcode4/Infinity.Run/releases)** section of this repository.
