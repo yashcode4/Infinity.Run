@@ -60,7 +60,56 @@ Before getting starting, ensure you have the following:
 - Open the `repo` directly in your code editor.
 - Start the react app:
   ```bash
-  npm start
+  npm starts
+
+---
+
+## 🖥️ Desktop App (Tauri Build)
+
+Infinity.Run is now available as a native desktop application using [Tauri](https://tauri.app/).
+
+### 🔽 Download Executables
+
+Choose the format based on your preference or system:
+
+- [Infinity.Run Portable (.exe)](https://github.com/yashcode4/Infinity.Run/releases/latest)  
+  Just download and play – no installation needed.
+
+- [Infinity.Run Installer (.msi)](https://github.com/yashcode4/Infinity.Run/releases/latest)  
+  Standard Windows installer – recommended.
+
+- [Infinity.Run NSIS Installer (.exe)](https://github.com/yashcode4/Infinity.Run/releases/latest)  
+  Alternative Windows installer using NSIS.
+
+> 📦 You can find all the latest release builds under the **[Releases](https://github.com/yashcode4/Infinity.Run/releases)** section of this repository.
+
+---
+
+### 🛠️ Run Locally with Tauri (for Developers)
+
+If you want to build or run the Tauri app locally:
+
+#### 📋 Prerequisites:
+- Node.js
+- Rust (used by Tauri) → [Install Rust](https://www.rust-lang.org/tools/install)
+- pnpm (or npm/yarn)
+- Tauri CLI:
+  ```bash
+  pnpm dlx @tauri-apps/cli init
+
+#### ▶️ Start the App (Development Mode):
+- This opens the native Tauri window for testing and debugging.
+   ```bash
+   pnpm tauri:dev
+
+#### 🏗️ Build Executables:
+- For generating build:
+  ```bash
+  pnpm tauri:build
+
+- Generated builds will appear in:
+  ```bash
+  src-tauri/target/release/bundle/
 
 ---
 
