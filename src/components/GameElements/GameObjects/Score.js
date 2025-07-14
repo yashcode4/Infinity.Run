@@ -25,19 +25,28 @@ export default class Score {
     }
 
     draw() {
+        // Retrieve values
         const highScore = Number(localStorage.getItem(this.HIGHT_SCORE_KEY));
-        const y = 18;
-
-        this.ctx.font = `16px 'Press Start 2P'`;
-        this.ctx.fillStyle = "white";
-
-        const scoreX = this.canvas.width - 80;
-        const highScoreX = scoreX - 135;
-
-        // Format score and high score
         const scorePadded = Math.floor(this.score).toString().padStart(5, 0);
         const highScorePadded = highScore.toString().padStart(5, 0);
 
+        // Layout constants
+        const y = 18;
+        const scoreX = this.canvas.width - 80;
+        const highScoreX = scoreX - 135; 
+
+        // Draw background behind the scores
+        const bgWidth = 220;
+        const bgHeight = 18;
+        const bgX = highScoreX - 1;
+        const bgY = y - bgHeight;
+
+        this.ctx.fillStyle = "black";
+        this.ctx.fillRect(bgX, bgY, bgWidth, bgHeight);
+
+        // Draw score and high score text
+        this.ctx.font = `16px 'Press Start 2P'`;
+        this.ctx.fillStyle = "white";
         this.ctx.fillText(scorePadded, scoreX, y);
         this.ctx.fillText(`HI ${highScorePadded}`, highScoreX, y);
     }
