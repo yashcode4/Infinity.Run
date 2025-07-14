@@ -42,22 +42,6 @@ body {
   /* Optional: Set a maximum height if needed */
 }
 
-.app {
-  border: 2px solid white;
-
-  /* Create the pixel effect */
-  image-rendering: pixelated;
-  box-shadow:
-    2px 0 white,
-    /* Right shadow */
-    -2px 0 white,
-    /* Left shadow */
-    0 2px white,
-    /* Bottom shadow */
-    0 -2px white;
-  /* Top shadow */
-}
-
 /* Navbar */
 .navbar {
   display: flex;
