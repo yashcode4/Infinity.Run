@@ -86,6 +86,14 @@ export default class Player {
                 this.falling = false;
                 this.jumpInProgress = false;
             }
+
+            // Stop the player from going off the left or right edges of the screen
+            if (this.x + this.width > this.canvas.width) {
+                this.x = this.canvas.width - this.width; // Prevent going past right edge
+            }
+            if (this.x < 0) {
+                this.x = 0; // Prevent going past left edge
+            }
         }
     }
 
