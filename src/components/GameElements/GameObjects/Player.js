@@ -71,14 +71,14 @@ export default class Player {
             if (this.y > this.canvas.height - this.minJumpHeight ||
                 (this.y > this.canvas.height - this.maxJumpHeight && this.jumpPressed)) {
                 this.y -= this.JUMP_SPEED * frameTimeDelta;
-                this.x += 0.05 * frameTimeDelta; // Slight right movement while going up
+                this.x += 0.04 * frameTimeDelta; // Slight right movement while going up
             } else {
                 this.falling = true; // Start falling after reaching peak
             }
         } else if (this.y < this.yStandingPosition) {
             // If player is falling, apply gravity
             this.y += this.GRAVITY * frameTimeDelta;
-            this.x += 0.03 * frameTimeDelta; // Continue slight right movement while falling
+            this.x += 0.02 * frameTimeDelta; // Continue slight right movement while falling
 
             if (this.y >= this.yStandingPosition) {
                 // Once player reaches ground, stop falling and reset state
