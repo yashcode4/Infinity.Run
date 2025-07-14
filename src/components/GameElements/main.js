@@ -28,7 +28,7 @@ export default function main() {
 
     // Game settings and configurations
     const GAME_SPEED_START = 1; // Initial game speed
-    const GAME_SPEED_INCREMENT = 0.00005; // Speed increase over time
+    const GAME_SPEED_INCREMENT = 0.00001; // Speed increase over time
 
     // Canvas Dimensions
     const GAME_WIDTH = 1280;
