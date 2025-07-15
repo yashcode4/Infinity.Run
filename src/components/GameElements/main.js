@@ -14,7 +14,7 @@ import Score from './GameObjects/Score';
 
 // Values Objects
 import Mode from "./ValueObjects/Mode";
-import Sep from "./ValueObjects/Sep";
+import Separator from "./ValueObjects/Separator";
 import Value from "./ValueObjects/Value";
 
 // Main function to initialize and start the Game
@@ -71,7 +71,7 @@ export default function main() {
 
     // Canvas2 objects
     let mode = null;
-    let sep = null;
+    let separator = null;
     let value = null;
 
     let previousTime = null; // Keeps track of the last frame's time
@@ -105,7 +105,7 @@ export default function main() {
 
         // Canvas2 Objects
         value = new Value(ctx2, player); // pass player for jumpPressed state
-        sep = new Sep(ctx2);
+        separator = new Separator(ctx2);
         mode = new Mode(ctx2, MODE_ICON_WIDTH, MODE_ICON_HEIGHT, value); // pass value
     }
 
@@ -252,7 +252,7 @@ export default function main() {
 
         // Draw objects on the second canvas
         mode.draw();
-        sep.draw();
+        separator.draw();
 
         // Show "Game Over" or "Start Game" texts if needed
         if (waitingToStart) {

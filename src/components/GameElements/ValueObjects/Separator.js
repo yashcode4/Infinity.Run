@@ -1,4 +1,4 @@
-export default class Sep {
+export default class Separator {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
