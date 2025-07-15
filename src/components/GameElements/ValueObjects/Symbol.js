@@ -1,7 +1,7 @@
 import piSymbol from "../../../images/symbol-images/pi-symbol-icon.png";
-import root2Symbol from "../../../images/symbol-images/root2-symbol-icon.png";
+/* import root2Symbol from "../../../images/symbol-images/root2-symbol-icon.png";
 import root3Symbol from "../../../images/symbol-images/root3-symbol-icon.png";
-import eSymbol from "../../../images/symbol-images/e-symbol-icon.png";
+import eSymbol from "../../../images/symbol-images/e-symbol-icon.png"; */
 import ranNum from "../../../images/symbol-images/ran-num.png";
 import ranLet from "../../../images/symbol-images/ran-let.png";
 import ranLetNum from "../../../images/symbol-images/ran-let-num.png";
@@ -28,8 +28,8 @@ export default class Symbol {
         this.y = 65;
 
         // Arrays of symbol images and their associated keys
-        this.symbolImages = [piSymbol, root2Symbol, root3Symbol, eSymbol, ranNum, ranLet, ranLetNum, ranSpecialChar, ranBin, netflix, marvelChar, dcChar, anime];
-        this.symbolKeys = ["π", "√2", "√3", "e", "123", "ABC", "ABC123", "@#$", "01", "net", "mar", "dc", "ani"];
+        this.symbolImages = [piSymbol, /* root2Symbol, root3Symbol, eSymbol, */ ranNum, ranLet, ranLetNum, ranSpecialChar, ranBin, netflix, marvelChar, dcChar, anime];
+        this.symbolKeys = ["π", /* "√2", "√3", "e", */ "123", "ABC", "ABC123", "@#$", "01", "net", "mar", "dc", "ani"];
         this.currentIndex = 0; // Start with the first symbol image
         this.image = this.loadImage(this.symbolImages[this.currentIndex]); // Load the first symbol image
 

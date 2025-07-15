@@ -1,4 +1,4 @@
-import { PI, SQRT2, SQRT3, E, ranNum, ranLet, ranLetNum, ranBinary, ranSpecialChar, netflix, marvelCharacters, dcCharacters, animes } from './Constants.js';
+import { PI, /* SQRT2, SQRT3, E, */ ranNum, ranLet, ranLetNum, ranBinary, ranSpecialChar, netflix, marvelCharacters, dcCharacters, animes } from './Constants.js';
 
 export default class Value {
     constructor(ctx, player) {
@@ -18,9 +18,9 @@ export default class Value {
         // Symbol-value map
         this.values = {
             π: PI,
-            "√2": SQRT2,
+           /*  "√2": SQRT2,
             "√3": SQRT3,
-            e: E,
+            e: E, */
             "123": ranNum,
             "ABC": ranLet,
             "ABC123": ranLetNum,
