@@ -1,4 +1,4 @@
-import { PI, SQRT2, SQRT3, E, ranNum, ranLet, ranLetNum, ranSpecialChar, netflix, marvelCharacters, dcCharacters, animes } from './Constants.js';
+import { PI, SQRT2, SQRT3, E, ranNum, ranLet, ranLetNum, ranBinary, ranSpecialChar, netflix, marvelCharacters, dcCharacters, animes } from './Constants.js';
 
 export default class Value {
     constructor(ctx, player) {
@@ -25,6 +25,7 @@ export default class Value {
             "ABC": ranLet,
             "ABC123": ranLetNum,
             "@#$": ranSpecialChar,
+            "01": ranBinary,
             "net": netflix,
             "mar": marvelCharacters,
             "dc": dcCharacters,
