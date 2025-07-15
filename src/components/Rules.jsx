@@ -1,12 +1,8 @@
-import React from 'react'
-import pi from '../images/symbol-images/pi-symbol-icon.png'
-import root2 from '../images/symbol-images/root2-symbol-icon.png'
-import root3 from '../images/symbol-images/root3-symbol-icon.png'
-import esymbol from '../images/symbol-images/e-symbol-icon.png'
-import ranNum from '../images/symbol-images/ran-num.png'
-import ranLet from '../images/symbol-images/ran-let.png'
-import ranLetNum from '../images/symbol-images/ran-let-num.png'
-import ranSpecChar from '../images/symbol-images/ran-special-char.png'
+import pi_mode from '../images/mode-images/pi_mode.png'
+import netflix_mode from "../images/mode-images/netflix_mode.png";
+import marvel_mode from "../images/mode-images/marvel_mode.png";
+import dc_mode from "../images/mode-images/dc_mode.png";
+import anime_mode from "../images/mode-images/anime_mode.png";
 
 const Rules = () => {
   return (
@@ -14,17 +10,14 @@ const Rules = () => {
       <div className="description container">
         <div className="box1">
           <h1>Rules</h1>
-          <p>Player will jump when you press the correct key that matches the respective symbol's keys. There are a total of 12 symbols in the game, each with its own corresponding keys.</p>
+          <p>Player will jump when you press the correct key that matches the respective mode's input keys. There are a total of 10 modes in the game, each with its own corresponding input keys.</p>
         </div>
         <div className="box2">
-        <img src={pi} alt="NA" />
-        <img src={root2} alt="NA" />
-        <img src={root3} alt="NA" />
-        <img src={esymbol} alt="NA" />
-        <img src={ranNum} alt="NA" />
-        <img src={ranLet} alt="NA" />
-        <img src={ranLetNum} alt="NA" />
-        <img src={ranSpecChar} alt="NA" />
+          <img src={pi_mode} alt="NA" />
+          <img src={netflix_mode} alt="NA" />
+          <img src={marvel_mode} alt="NA" />
+          <img src={dc_mode} alt="NA" />
+          <img src={anime_mode} alt="NA" />
         </div>
       </div>
     </>

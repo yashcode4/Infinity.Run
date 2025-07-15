@@ -15,7 +15,7 @@ export default class Value {
         this.valueToMatch = null; // The current correct character to match
         this.inputDisabled = false; // Input switch
 
-        // Symbol-value map
+        // Mode-value map
         this.values = {
             π: PI,
            /*  "√2": SQRT2,
@@ -32,8 +32,8 @@ export default class Value {
             "ani": animes
         };
 
-        // Default symbol
-        this.currentSymbol = "π";
+        // Default mode
+        this.currentMode = "π";
 
         // Setup keyboard listeners
         document.removeEventListener("keydown", this.keydown);
@@ -44,8 +44,8 @@ export default class Value {
     }
 
     // Compute the value to display
-    computeValue(symbol, index) {
-        const value = this.values[symbol];
+    computeValue(mode, index) {
+        const value = this.values[mode];
         return value.substring(0, index + this.precision);
     }
 
@@ -56,9 +56,9 @@ export default class Value {
         this.valueToMatch = null;
     }
 
-    // Update the current symbol
-    updateSymbol(symbol) {
-        this.currentSymbol = symbol;
+    // Update the current mode
+    updateMode(mode) {
+        this.currentMode = mode;
         this.typedValue = "";
         this.currentIndex = 0;
     }
@@ -79,7 +79,7 @@ export default class Value {
 
         const allowedKeys = /^[\S]$/;
         if (allowedKeys.test(event.key)) {
-            this.valueToMatch = this.computeValue(this.currentSymbol, this.currentIndex)[this.currentIndex];
+            this.valueToMatch = this.computeValue(this.currentMode, this.currentIndex)[this.currentIndex];
             if (event.key === this.valueToMatch) {
                 this.typedValue += event.key;
                 this.currentIndex++;
@@ -102,7 +102,7 @@ export default class Value {
         let xPos = this.x;
         let yPos = this.y;
 
-        const valueToDraw = this.computeValue(this.currentSymbol, this.currentIndex);
+        const valueToDraw = this.computeValue(this.currentMode, this.currentIndex);
 
         for (let i = this.currentIndex; i < valueToDraw.length; i++) {
             const char = valueToDraw[i];

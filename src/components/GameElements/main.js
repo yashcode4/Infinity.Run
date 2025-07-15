@@ -13,7 +13,7 @@ import ObsController from './GameObjects/ObsController';
 import Score from './GameObjects/Score';
 
 // Values Objects
-import Symbol from "./ValueObjects/Symbol";
+import Mode from "./ValueObjects/Mode";
 import Sep from "./ValueObjects/Sep";
 import Value from "./ValueObjects/Value";
 
@@ -59,9 +59,9 @@ export default function main() {
         { width: 30 / 1.5, height: 108 / 1.5, image: obsImage6 }
     ];
 
-    // Symbol dimensions
-    const SYMBOL_WIDTH = 70;
-    const SYMBOL_HEIGHT = 70;
+    // Mode dimensions
+    const MODE_ICON_WIDTH = 70;
+    const MODE_ICON_HEIGHT = 70;
 
     // Declare game objects and state variables
     let player = null; // The player character
@@ -70,7 +70,7 @@ export default function main() {
     let score = null; // Score tracker
 
     // Canvas2 objects
-    let symbol = null;
+    let mode = null;
     let sep = null;
     let value = null;
 
@@ -106,7 +106,7 @@ export default function main() {
         // Canvas2 Objects
         value = new Value(ctx2, player); // pass player for jumpPressed state
         sep = new Sep(ctx2);
-        symbol = new Symbol(ctx2, SYMBOL_WIDTH, SYMBOL_HEIGHT, value); // pass value
+        mode = new Mode(ctx2, MODE_ICON_WIDTH, MODE_ICON_HEIGHT, value); // pass value
     }
 
     // Set canvas dimensions and initialize game objects
@@ -163,10 +163,10 @@ export default function main() {
         player.reset();
         player.playerCollided = false;
 
-        symbol.symbolChangeEnabled = true;
+        mode.modeChangeEnabled = true;
         value.inputDisabled = false;
 
-        // Reset the symbol's value 
+        // Reset the mode's value 
         value.resetValue();
     }
 
@@ -231,7 +231,7 @@ export default function main() {
             score.update(frameTimeDelta);
             updateGameSpeed(frameTimeDelta);
 
-            symbol.symbolChangeEnabled = false; // disable symbol change during game progress
+            mode.modeChangeEnabled = false; // disable mode change during game progress
         }
 
         // Check for collisions and handle game over
@@ -251,7 +251,7 @@ export default function main() {
         score.draw();
 
         // Draw objects on the second canvas
-        symbol.draw();
+        mode.draw();
         sep.draw();
 
         // Show "Game Over" or "Start Game" texts if needed
