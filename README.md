@@ -1,4 +1,5 @@
-# Infinity.Run 
+
+![logo_text](src/images/logo_text.png)
 Welcome to the **Infinity.Run** repository!    
 This project is built using React. It's an endless runner game where the player must dodge obstacles and survive for as long as possible.
 
