@@ -1,6 +1,6 @@
 import { PI, /* SQRT2, SQRT3, E, */ ranNum, ranLet, ranLetNum, ranBinary, ranSpecialChar, netflix, marvelCharacters, dcCharacters, animes } from './Constants.js';
 
-export default class Value {
+export default class Input {
     constructor(ctx, player) {
         this.ctx = ctx;
         this.x = 155;
@@ -8,15 +8,15 @@ export default class Value {
 
         this.player = player;
 
-        this.typedValue = ""; // User input
+        this.typedInput = ""; // User input
         this.currentIndex = 0; // Current match index
         this.precision = 30; // Number of digits to display
 
-        this.valueToMatch = null; // The current correct character to match
+        this.inputToMatch = null; // The current correct character to match
         this.inputDisabled = false; // Input switch
 
-        // Mode-value map
-        this.values = {
+        // Mode-input map
+        this.input = {
             π: PI,
            /*  "√2": SQRT2,
             "√3": SQRT3,
@@ -43,23 +43,23 @@ export default class Value {
         document.addEventListener("keyup", this.keyup);
     }
 
-    // Compute the value to display
-    computeValue(mode, index) {
-        const value = this.values[mode];
-        return value.substring(0, index + this.precision);
+    // Compute the input to display
+    computeInput(mode, index) {
+        const input = this.input[mode];
+        return input.substring(0, index + this.precision);
     }
 
-    // Reset function for reset the typed input, currentIndex, and valueToMatch
-    resetValue() {
-        this.typedValue = "";
+    // Reset function for reset the typed input, currentIndex, and inputToMatch
+    resetInput() {
+        this.typedInput = "";
         this.currentIndex = 0;
-        this.valueToMatch = null;
+        this.inputToMatch = null;
     }
 
     // Update the current mode
     updateMode(mode) {
         this.currentMode = mode;
-        this.typedValue = "";
+        this.typedInput = "";
         this.currentIndex = 0;
     }
 
@@ -79,9 +79,9 @@ export default class Value {
 
         const allowedKeys = /^[\S]$/;
         if (allowedKeys.test(event.key)) {
-            this.valueToMatch = this.computeValue(this.currentMode, this.currentIndex)[this.currentIndex];
-            if (event.key === this.valueToMatch) {
-                this.typedValue += event.key;
+            this.inputToMatch = this.computeInput(this.currentMode, this.currentIndex)[this.currentIndex];
+            if (event.key === this.inputToMatch) {
+                this.typedInput += event.key;
                 this.currentIndex++;
 
                 // Set player's jump state
@@ -92,7 +92,7 @@ export default class Value {
 
     // Handle keyup event to reset jump state
     keyup = (event) => {
-        if (event.key === this.valueToMatch) {
+        if (event.key === this.inputToMatch) {
             this.player.jumpPressed = false;
         }
     };
@@ -102,10 +102,10 @@ export default class Value {
         let xPos = this.x;
         let yPos = this.y;
 
-        const valueToDraw = this.computeValue(this.currentMode, this.currentIndex);
+        const inputToDraw = this.computeInput(this.currentMode, this.currentIndex);
 
-        for (let i = this.currentIndex; i < valueToDraw.length; i++) {
-            const char = valueToDraw[i];
+        for (let i = this.currentIndex; i < inputToDraw.length; i++) {
+            const char = inputToDraw[i];
             this.ctx.fillStyle = "white";
             this.ctx.fillText(char, xPos, yPos);
 

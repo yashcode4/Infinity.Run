@@ -12,10 +12,10 @@ import Ground from './GameObjects/Ground';
 import ObsController from './GameObjects/ObsController';
 import Score from './GameObjects/Score';
 
-// Values Objects
-import Mode from "./ValueObjects/Mode";
-import Separator from "./ValueObjects/Separator";
-import Value from "./ValueObjects/Value";
+// Input Objects
+import Mode from "./InputObjects/Mode";
+import Separator from "./InputObjects/Separator";
+import Input from "./InputObjects/Input";
 
 // Main function to initialize and start the Game
 export default function main() {
@@ -72,7 +72,7 @@ export default function main() {
     // Canvas2 objects
     let mode = null;
     let separator = null;
-    let value = null;
+    let input = null;
 
     let previousTime = null; // Keeps track of the last frame's time
     let gameSpeed = GAME_SPEED_START; // Current game speed
@@ -104,9 +104,9 @@ export default function main() {
         score = new Score(ctx);
 
         // Canvas2 Objects
-        value = new Value(ctx2, player); // pass player for jumpPressed state
+        input = new Input(ctx2, player); // pass player for jumpPressed state
         separator = new Separator(ctx2);
-        mode = new Mode(ctx2, MODE_ICON_WIDTH, MODE_ICON_HEIGHT, value); // pass value
+        mode = new Mode(ctx2, MODE_ICON_WIDTH, MODE_ICON_HEIGHT, input); // pass input
     }
 
     // Set canvas dimensions and initialize game objects
@@ -164,10 +164,10 @@ export default function main() {
         player.playerCollided = false;
 
         mode.modeChangeEnabled = true;
-        value.inputDisabled = false;
+        input.inputDisabled = false;
 
-        // Reset the mode's value 
-        value.resetValue();
+        // Reset the mode's input 
+        input.resetInput();
     }
 
     // "Game Start" text
@@ -241,7 +241,7 @@ export default function main() {
             setupGameReset();
             score.setHighScore();
 
-            value.inputDisabled = true; // disable input when game over
+            input.inputDisabled = true; // disable input when game over
         }
 
         // Draw game objects
@@ -272,7 +272,7 @@ export default function main() {
 
     // Start the game when the right key is pressed and waitingToStart is true
     document.addEventListener("keydown", (event) => {
-        if (waitingToStart && event.key === value.valueToMatch) {
+        if (waitingToStart && event.key === input.inputToMatch) {
             waitingToStart = false;
         }
     });

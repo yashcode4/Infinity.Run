@@ -13,7 +13,7 @@ import dc_mode from "../../../images/mode-images/dc_mode.png";
 import anime_mode from "../../../images/mode-images/anime_mode.png";
 
 export default class Mode {
-    constructor(ctx, width, height, value) {
+    constructor(ctx, width, height, input) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
         this.width = width;
@@ -21,7 +21,7 @@ export default class Mode {
 
         this.currentMode = ''; // Currently displayed mode
         this.currentIndex = 0; // Index of the current mode in the array
-        this.typedValue = ''; // Value typed by the user
+        this.typedInput = ''; // Input typed by the user
 
         // Position of the mode on canvas
         this.x = 10;
@@ -61,9 +61,9 @@ export default class Mode {
         this.currentIndex = 0; // Start with the first mode image
         this.image = this.loadImage(this.modeImages[this.currentIndex]); // Load the first mode image
 
-        // Update the displayed value when a new mode is selected
-        this.value = value;
-        this.value.updateMode(this.modeKeys[this.currentIndex]);
+        // Update the displayed input when a new mode is selected
+        this.input = input;
+        this.input.updateMode(this.modeKeys[this.currentIndex]);
 
         this.modeChangeEnabled = true; // mode switch
 
@@ -105,7 +105,7 @@ export default class Mode {
         if (this.isHovered && this.modeChangeEnabled) {
             this.currentIndex = (this.currentIndex + 1) % this.modeImages.length;
             this.image = this.loadImage(this.modeImages[this.currentIndex]); // Change mode when clicked
-            this.value.updateMode(this.modeKeys[this.currentIndex]); // Change values when clicked
+            this.input.updateMode(this.modeKeys[this.currentIndex]); // Change input when clicked
         }
     }
 
@@ -119,7 +119,7 @@ export default class Mode {
         }
     }
 
-    // Draw the mode and its associated value
+    // Draw the mode and its associated input
     draw() {
         this.updateGlow();
 
@@ -132,7 +132,7 @@ export default class Mode {
         // Reset filter settings to avoid affecting other drawing operations
         this.ctx.filter = "none";
 
-        // Draw the value (if any)
-        this.value.draw();
+        // Draw the input (if any)
+        this.input.draw();
     }
 }
