@@ -172,12 +172,12 @@ export default function main() {
 
     // "Game Start" text
     function showStartGameText() {
-        const fontSize = 70;
+        const fontSize = 90;
         ctx.font = `${fontSize}px Pixelify Sans`;
         ctx.fillStyle = "white";
-        const x = 213;
-        const y = 108;
-        ctx.fillText("Press Right Key To Start", x, y);
+        const x = 418;
+        const y = 120;
+        ctx.fillText("Let's Go !!!", x, y);
     }
 
     // "Game Over" text

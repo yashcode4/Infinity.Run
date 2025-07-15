@@ -10,7 +10,7 @@ const Rules = () => {
       <div className="description container">
         <div className="box1">
           <h1>Rules</h1>
-          <p>Player will jump when you press the correct key that matches the respective mode's input keys. There are a total of 10 modes in the game, each with its own corresponding input keys.</p>
+          <p>Player will jump when you press the correct input that matches the respective mode's input. There are a total of 10 modes in the game, each with its own corresponding input.</p>
         </div>
         <div className="box2">
           <img src={pi_mode} alt="NA" />
