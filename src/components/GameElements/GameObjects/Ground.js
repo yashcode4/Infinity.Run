@@ -9,7 +9,7 @@ export default class Ground {
         this.speed = speed; // Speed at which the ground moves
 
         this.x = 0; // Horizontal position of the ground
-        this.y = this.canvas.height - this.height + 4; // Position at the bottom of the canvas
+        this.y = this.canvas.height - this.height; // Position at the bottom of the canvas
 
         this.groundImage = new Image();
         this.groundImage.src = groundImageSrc
