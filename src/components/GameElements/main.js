@@ -46,7 +46,7 @@ export default function main() {
 
     // Ground properties
     const GROUND_WIDTH = 2400;
-    const GROUND_HEIGHT = 24;
+    const GROUND_HEIGHT = 20;
     const GROUND_AND_OBSTACLE_SPEED = 0.5; // Movement speed for ground and obstacles
 
     // Obstacles configuration: width, height, and images
