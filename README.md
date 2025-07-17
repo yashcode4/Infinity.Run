@@ -50,10 +50,17 @@ Before getting starting, ensure you have the following:
    npm install
 
 3. **Start the development server**:
-   ```bash
-   npm start
+    ```bash
+    npm start
 
-4. **Open your browser and navigate to http://localhost:3000 to play the game.**
+- Open your browser and navigate to http://localhost:3000 to play the game.
+
+4. **Build the production version:**
+    ```bash
+    npm run build
+
+- This will create an optimized build in the build/ directory, ready for deployment.
+
 ---
 
 ## 🚀 Run the Game
