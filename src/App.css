@@ -136,23 +136,26 @@ body {
   height: 80px;
   width: 80px;
   margin: 30px 30px;
-  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for both zoom and glow */
+  transition: transform 0.3s ease, filter 0.3s ease;
+  /* Smooth transition for both zoom and glow */
 }
 
 .box2 img:hover {
   cursor: pointer;
-  filter: drop-shadow(0 0 5px blue) drop-shadow(0 0 5px blue); 
-  transform: scale(1.1); /* Zoom effect */
+  filter: drop-shadow(0 0 5px blue) drop-shadow(0 0 5px blue);
+  transform: scale(1.1);
+  /* Zoom effect */
 }
 
 .box2 p {
   font-size: 110px;
-  transition: filter 0.5s ease, transform 0.5s ease; /* Transition for both filter and transform */
+  transition: filter 0.5s ease, transform 0.5s ease;
+  /* Transition for both filter and transform */
 }
 
 .box2 p:hover {
   cursor: pointer;
-  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue); 
+  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
 }
 
 /* Home */
@@ -164,11 +167,11 @@ body {
   font-size: 40px;
   text-decoration: none;
   color: white;
-  transition: filter 0.5s ease, transform 0.5s ease; 
+  transition: filter 0.5s ease, transform 0.5s ease;
 }
 
 .home a:hover {
-  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue); 
+  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
 }
 
 /* Footer Component */
@@ -186,4 +189,134 @@ body {
   justify-content: center;
   flex-direction: column;
   padding-top: 30px;
+}
+
+/* Scoreboard Component */
+.scorecontainer {
+  height: 503px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+
+/* Heading */
+.scoreHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.scoreHeading h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+/* Table Wrapper / Table Container */
+.table-wrapper {
+  /* Remove scrollbar */
+  overflow-y: auto;
+  /* Firefox */
+  scrollbar-width: none;
+  /* Internet Explorer 10+ */
+  -ms-overflow-style: none;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  /* Chrome, Safari, Edge */
+  display: none;
+}
+
+
+/* table */
+table {
+  max-height: 400px;
+  width: 1315px;
+  /* removes spacing between cells */
+  border-collapse: collapse;
+}
+
+/* Table Head */
+table thead {
+  height: 30px;
+  background-color: #252525;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+
+/* Apply to all header cells */
+table thead th {
+  height: 20px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 30px;
+}
+
+/* Apply to all body cells */
+table tbody td {
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 30px;
+}
+
+/* Change cursor to pointer on hover */
+table tbody tr:hover {
+  background-color: rgba(182, 182, 182, 0.1);
+  cursor: pointer;
+}
+
+/* Rank Color */
+.rank.noob {
+  color: #643d3d;
+}
+
+.rank.learner {
+  color: #7c7c7c;
+}
+
+.rank.amateur {
+  color: #4caa4d;
+}
+
+.rank.average {
+  color: #c2d41a;
+}
+
+.rank.skilled {
+  color: #6f00ff;
+}
+
+.rank.pro {
+  color: #00ffbf;
+  text-shadow: 0 0 8px #ffffff;
+}
+
+.rank.elite {
+  color: #ff9800;
+  font-weight: bold;
+  text-shadow: 0 0 8px #00e1ff;
+}
+
+.rank.lethal {
+  color: #000000;
+  font-weight: bold;
+  text-shadow: 0 0 5px #f44336, 0 0 10px #ff0000;
+}
+
+.rank.master {
+  color: #c9c9c9;
+  font-weight: bold;
+  text-shadow: 0 0 10px #0066ff, 0 0 15px #0066ff;
+}
+
+.rank.conqueror {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-shadow: 0 0 10px gold, 0 0 20px gold;
 }
