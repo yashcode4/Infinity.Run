@@ -191,8 +191,8 @@ body {
   padding-top: 30px;
 }
 
-/* Scoreboard Component */
-.scorecontainer {
+/* Scoreboard Container */
+.scoreboard-container {
   height: 503px;
   display: flex;
   align-items: center;
@@ -200,55 +200,41 @@ body {
   padding-bottom: 5px;
 }
 
-/* Score Heading */
-.scoreHeading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 8px;
-
+/* Score Header */
+.scoreboard-header {
   display: flex;
   justify-content: space-between;
-  /* <-- spread title & actions */
   align-items: center;
   width: 100%;
-  /* <-- full width for spacing */
   max-width: 1330px;
-  /* optional: constrain width */
   padding: 0 7px;
-  margin-bottom: 8px;
+  margin: 10px;
 }
 
 /* Score Title */
-.scoreTitle {
-  font-size: 50px;
-
+.scoreboard-title {
   font-size: 36px;
-  text-align: left;
   margin: 0;
+  text-align: left;
 }
 
 /* Score Actions */
-.scoreActions {
+.scoreboard-actions {
   display: flex;
-  justify-content: center;
-  align-items: right;
-  margin-left: 25px;
   gap: 10px;
 }
 
 /* Score Actions - Buttons */
-.scoreActions button {
+.scoreboard-actions button {
   background-color: #252525;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 25x;
+  padding: 8px 15px;
   cursor: pointer;
 }
 
-/* Table Wrapper / Table Container */
-.table-wrapper {
+/* Table Container */
+.scoreboard-table-wrapper {
   /* Remove scrollbar */
   overflow-y: auto;
   /* Firefox */
@@ -257,15 +243,13 @@ body {
   -ms-overflow-style: none;
 }
 
-.table-wrapper::-webkit-scrollbar {
+.scoreboard-table-wrapper::-webkit-scrollbar {
   /* Chrome, Safari, Edge */
   display: none;
 }
 
-
-/* table */
+/* Table */
 table {
-  max-height: 400px;
   width: 1315px;
   /* removes spacing between cells */
   border-collapse: collapse;
@@ -273,36 +257,45 @@ table {
 
 /* Table Head */
 table thead {
-  height: 30px;
-  background-color: #252525;
   position: sticky;
   top: 0px;
+  background-color: #252525;
   z-index: 1;
 }
 
-/* Apply to all header cells */
-table thead th {
-  height: 20px;
+/* Table Cells – Head and Body */
+table thead th, table tbody td  {
+  padding: 10px 10px;
+  height: 40px;
   text-align: left;
-  padding-left: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-size: 30px;
+  font-family: 'Press Start 2P';
+  font-size: 16px;
 }
 
-/* Apply to all body cells */
-table tbody td {
-  text-align: left;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 30px;
-}
-
-/* Change cursor to pointer on hover */
+/* Table Body - Hover Effect */
 table tbody tr:hover {
   background-color: rgba(182, 182, 182, 0.1);
   cursor: pointer;
+}
+
+/* Empty Row - No Score Available*/
+/* Prevent hover effects on the "No Scores Available" row */
+.scoreboard-empty-row:hover{
+  background-color: transparent;
+  cursor: default;
+}
+
+/* Style the single cell in the empty state row */
+.scoreboard-empty-row td {
+  text-align: center;
+  padding-top: 170px; /* Vertically center the message */
+  font-size: 18px;
+}
+
+/* Rank font style */
+.rank {
+  font-family: 'Pixelify Sans';
+  font-size: 28px;
 }
 
 /* Rank Color */
