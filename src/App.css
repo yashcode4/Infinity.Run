@@ -200,17 +200,51 @@ body {
   padding-bottom: 5px;
 }
 
-/* Heading */
+/* Score Heading */
 .scoreHeading {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
+
+  display: flex;
+  justify-content: space-between;
+  /* <-- spread title & actions */
+  align-items: center;
+  width: 100%;
+  /* <-- full width for spacing */
+  max-width: 1330px;
+  /* optional: constrain width */
+  padding: 0 7px;
+  margin-bottom: 8px;
 }
 
-.scoreHeading h1 {
+/* Score Title */
+.scoreTitle {
   font-size: 50px;
-  text-align: center;
+
+  font-size: 36px;
+  text-align: left;
+  margin: 0;
+}
+
+/* Score Actions */
+.scoreActions {
+  display: flex;
+  justify-content: center;
+  align-items: right;
+  margin-left: 25px;
+  gap: 10px;
+}
+
+/* Score Actions - Buttons */
+.scoreActions button {
+  background-color: #252525;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 25x;
+  cursor: pointer;
 }
 
 /* Table Wrapper / Table Container */

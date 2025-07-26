@@ -2,9 +2,16 @@ import { useEffect } from 'react';
 import main from './GameElements/main';
 
 const Game = () => {
+    // Prevent `main()` from running twice in React StrictMode (dev mode).
+    // React intentionally double-invokes useEffect to detect side-effects.
+    let hasInitialized = false;
+
     useEffect(() => {
-        main();
-    }, []); // Empty dependency array ensures this runs once on mount
+        if (!hasInitialized) {
+            hasInitialized = true;
+            main();
+        }
+    }, []); // Runs ONLY ONCE after the first render
 
     return (
         <div className="container game-canvas">

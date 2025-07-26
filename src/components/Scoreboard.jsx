@@ -1,5 +1,8 @@
+import React, { useState } from "react";
+
 const Scoreboard = () => {
-  const scores = [
+  // State for scores
+  const [scores, setScores] = useState([
     { index: 1, mode: "Binary", rank: 'Noob', score: 1000, date: '2025-07-24' },
     { index: 2, mode: "Netflix", rank: 'Learner', score: 2000, date: '2025-07-24' },
     { index: 3, mode: "PiMode", rank: 'Amateur', score: 3000, date: '2025-07-23' },
@@ -20,7 +23,15 @@ const Scoreboard = () => {
     { index: 18, mode: "PiMode", rank: 'Lethal', score: 8000, date: '2025-07-16' },
     { index: 19, mode: "CharNum", rank: 'Master', score: 9000, date: '2025-07-15' },
     { index: 20, mode: "DCMode", rank: 'Conqueror', score: 10000, date: '2025-07-15' }
-  ];
+  ]);
+
+    // Function to clear scores
+  const clearScores = () => {
+    const confirmClear = window.confirm("Are you sure you want to clear all scores?");
+    if (confirmClear) {
+      setScores([]);
+    }
+  };
 
   return (
     <>
@@ -28,7 +39,12 @@ const Scoreboard = () => {
 
         {/* Heading */}
         <div className="scoreHeading">
-          <h1>Scoreboard</h1>
+          <h1 className="scoreTitle">Scoreboard</h1>
+
+          <div className="scoreActions">
+            <button className="clearBtn" onClick={clearScores}>Clear Scores</button>
+            <button className="helpBtn">Help</button>
+          </div>
         </div>
 
         {/* Table Container */}
