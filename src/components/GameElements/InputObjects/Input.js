@@ -45,8 +45,9 @@ export default class Input {
 
     // Compute the input to display
     computeInput(mode, index) {
-        const input = this.input[mode];
-        return input.substring(0, index + this.precision);
+        const rawInput = this.input[mode]; // Already cleaned
+        const repeatedInput = rawInput.repeat(Math.ceil((index + this.precision) / rawInput.length));
+        return repeatedInput.substring(0, index + this.precision);
     }
 
     // Reset function for reset the typed input, currentIndex, and inputToMatch
