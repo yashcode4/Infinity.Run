@@ -127,7 +127,6 @@ body {
   display: flex;
   justify-content: center;
   height: 100%;
-  height: 45%;
   width: 100%;
   padding: 20px 40px;
 }
@@ -172,6 +171,25 @@ body {
 
 .home a:hover {
   filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
+}
+
+/* About Component */
+.social-icons{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.social-icons span {
+  font-size: 30px;
+}
+
+.social-icons a img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: block;
 }
 
 /* Footer Component */
@@ -258,7 +276,8 @@ table thead {
 }
 
 /* Table Cells – Head and Body */
-table thead th, table tbody td  {
+table thead th,
+table tbody td {
   padding: 10px 20px;
   height: 40px;
   text-align: left;
@@ -274,7 +293,7 @@ table tbody tr:hover {
 
 /* Empty Row - No Score Available*/
 /* Prevent hover effects on the "No Scores Available" row */
-.scoreboard-empty-row:hover{
+.scoreboard-empty-row:hover {
   background-color: transparent;
   cursor: default;
 }
@@ -282,7 +301,7 @@ table tbody tr:hover {
 /* Style the single cell in the empty state row */
 .scoreboard-empty-row td {
   text-align: center;
-  padding-top: 170px; /* Vertically center the message */
+  padding-top: 170px;
   font-size: 18px;
 }
 
