@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 const Scoreboard = () => {
   // State for scores
   const [scores, setScores] = useState([]);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
+
 
   useEffect(() => {
     const stored = localStorage.getItem("topScores");
@@ -12,12 +14,17 @@ const Scoreboard = () => {
   }, []);
 
   // Function to clear scores
-  const clearScores = () => {
-    const confirmClear = window.confirm("Are you sure you want to clear all scores?");
-    if (confirmClear) {
-      localStorage.removeItem("topScores");     // Clear top scores list
-      localStorage.removeItem("highScore");     // Clear high score
-      setScores([]);                            // Clear table state
+  const deleteScores = () => {
+    if (!confirmingDelete) {
+      setConfirmingDelete(true); // First click: ask for confirmation
+      // Revert back to normal after 3 seconds (optional)
+      setTimeout(() => setConfirmingDelete(false), 3000);
+    } else {
+      // Second click: actually delete scores
+      localStorage.removeItem("topScores"); // delete top scores list
+      localStorage.removeItem("highScore"); // delete high score
+      setScores([]);                        // delete table state
+      setConfirmingDelete(false); // Reset button
     }
   };
 
@@ -28,16 +35,22 @@ const Scoreboard = () => {
         {/* Header */}
         <div className="scoreboard-header">
           <h1 className="scoreboard-title">Scoreboard</h1>
-          <div className="scoreboard-actions">
-            <button className="btn-clear-scores" onClick={clearScores}>Clear Scores</button>
-            <button className="btn-help">Help</button>
-          </div>
 
+          <button className="btn-clear-scores" onClick={deleteScores}>
+            {confirmingDelete ? "Are You Sure ?" : "Delete Scores"}
+          </button>
         </div>
 
         {/* Table Container */}
         <div className="scoreboard-table-wrapper">
           <table>
+            <colgroup>
+              <col style={{ width: "18%" }} />
+              <col style={{ width: "20%" }} />
+              <col style={{ width: "22%" }} />
+              <col style={{ width: "20%" }} />
+              <col style={{ width: "20%" }} />
+            </colgroup>
             <thead>
               <tr>
                 <th className="col-index">Index</th>

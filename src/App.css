@@ -200,7 +200,7 @@ body {
   padding-bottom: 5px;
 }
 
-/* Score Header */
+/* Header */
 .scoreboard-header {
   display: flex;
   justify-content: space-between;
@@ -211,21 +211,15 @@ body {
   margin: 10px;
 }
 
-/* Score Title */
+/* Header - Title */
 .scoreboard-title {
   font-size: 36px;
   margin: 0;
   text-align: left;
 }
 
-/* Score Actions */
-.scoreboard-actions {
-  display: flex;
-  gap: 10px;
-}
-
-/* Score Actions - Buttons */
-.scoreboard-actions button {
+/* Header - Delete Score Button */
+.btn-clear-scores {
   background-color: #252525;
   color: white;
   border: none;
@@ -265,7 +259,7 @@ table thead {
 
 /* Table Cells – Head and Body */
 table thead th, table tbody td  {
-  padding: 10px 10px;
+  padding: 10px 20px;
   height: 40px;
   text-align: left;
   font-family: 'Press Start 2P';
