@@ -239,7 +239,7 @@ export default function main() {
             gameOver = true;
             player.playerCollided = true;
             setupGameReset();
-            score.saveCurrentScore(input.currentMode, player.rank);
+            score.saveCurrentScore(input.currentMode);
             score.setHighScore();
 
             input.inputDisabled = true; // disable input when game over

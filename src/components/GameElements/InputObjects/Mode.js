@@ -44,19 +44,20 @@ export default class Mode {
             anime_mode];
 
         this.modeKeys = [
-            "π",
+            "PI",
             // "√2",
             // "√3",
             // "e",
-            "123",
-            "ABC",
-            "ABC123",
-            "@#$",
-            "01",
-            "net",
-            "mar",
-            "dc",
-            "ani"];
+            "Numbers",
+            "Letters",
+            "AlphaNumeric",
+            "Symbols",
+            "Binary",
+            "Netflix",
+            "Marvel",
+            "DC",
+            "Anime"
+        ];
 
         this.currentIndex = 0; // Start with the first mode image
         this.image = this.loadImage(this.modeImages[this.currentIndex]); // Load the first mode image

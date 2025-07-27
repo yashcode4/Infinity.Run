@@ -1,4 +1,4 @@
-import { PI, /* SQRT2, SQRT3, E, */ ranNum, ranLet, ranLetNum, ranBinary, ranSpecialChar, netflix, marvelCharacters, dcCharacters, animes } from './Constants.js';
+import { PI, /* SQRT2, SQRT3, EULER, */ Numbers, Letters, AlphaNumeric, Symbols, Binary, Netflix, Marvel, DC, Anime } from './Constants.js';
 
 export default class Input {
     constructor(ctx, player) {
@@ -15,25 +15,25 @@ export default class Input {
         this.inputToMatch = null; // The current correct character to match
         this.inputDisabled = false; // Input switch
 
-        // Mode-input map
+        // Maps each mode name to its corresponding input string
         this.input = {
-            π: PI,
-           /*  "√2": SQRT2,
-            "√3": SQRT3,
-            e: E, */
-            "123": ranNum,
-            "ABC": ranLet,
-            "ABC123": ranLetNum,
-            "@#$": ranSpecialChar,
-            "01": ranBinary,
-            "net": netflix,
-            "mar": marvelCharacters,
-            "dc": dcCharacters,
-            "ani": animes
+            PI,
+            // SQRT2,
+            // SQRT3,
+            // EULER,
+            Numbers,
+            Letters,
+            AlphaNumeric,
+            Symbols,
+            Binary,
+            Netflix,
+            Marvel,
+            DC,
+            Anime
         };
 
         // Default mode
-        this.currentMode = "π";
+        this.currentMode = "PI";
 
         // Setup keyboard listeners
         document.removeEventListener("keydown", this.keydown);

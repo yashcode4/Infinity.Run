@@ -28,7 +28,7 @@ export default class Score {
     }
 
     // Save the current score + rank + metadata
-    saveCurrentScore(mode = "Unknown") {
+    saveCurrentScore(mode) {
         const finalScore = Math.floor(this.score);
         const rank = getRankFromScore(finalScore); // calculate rank
 
