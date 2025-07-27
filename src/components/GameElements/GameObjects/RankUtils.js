@@ -1,13 +1,13 @@
 export const RANK_THRESHOLDS = [
-  { min: 1000, rank: "Conqueror" },
-  { min: 900, rank: "Master" },
-  { min: 800, rank: "Lethal" },
-  { min: 700, rank: "Elite" },
-  { min: 600, rank: "Pro" },
-  { min: 500, rank: "Skilled" },
-  { min: 400, rank: "Average" },
-  { min: 300, rank: "Amateur" },
-  { min: 200, rank: "Learner" },
+  { min: 10000, rank: "Conqueror" },
+  { min: 8000, rank: "Master" },
+  { min: 7000, rank: "Lethal" },
+  { min: 6000, rank: "Elite" },
+  { min: 5000, rank: "Pro" },
+  { min: 4000, rank: "Skilled" },
+  { min: 3000, rank: "Average" },
+  { min: 2000, rank: "Amateur" },
+  { min: 1000, rank: "Learner" },
   { min: 0, rank: "Noob" },
 ];
 
