@@ -179,7 +179,7 @@ body {
 }
 
 /* About Component */
-.social-icons{
+.social-icons {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -229,8 +229,9 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1330px;
   margin: 10px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Header - Title */
@@ -251,12 +252,16 @@ body {
 
 /* Table Container */
 .scoreboard-table-wrapper {
+  padding: 0 20px;
   /* Remove scrollbar */
   overflow-y: auto;
   /* Firefox */
   scrollbar-width: none;
   /* Internet Explorer 10+ */
   -ms-overflow-style: none;
+
+  /* Ensures padding doesn't exceed width */
+  box-sizing: border-box;
 }
 
 .scoreboard-table-wrapper::-webkit-scrollbar {
@@ -266,7 +271,8 @@ body {
 
 /* Table */
 table {
-  width: 1315px;
+  width: 100%;
+  table-layout: fixed;
   /* removes spacing between cells */
   border-collapse: collapse;
 }
