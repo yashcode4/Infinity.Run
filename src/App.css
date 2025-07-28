@@ -46,23 +46,23 @@ body {
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 40px;
-  margin: 5px 0;
+  margin: 5px 20px;
   padding: 0;
 }
 
 /* Logo */
 .logo {
   display: flex;
-  margin: 0;
   align-items: center;
-  padding: 0 20px;
+  gap: 6px;
+  margin: 0;
 }
 
 .logo img {
   height: 24px;
   width: 25px;
-  margin: 0 6px;
   margin-bottom: 1px;
 }
 
@@ -76,11 +76,11 @@ body {
 .navbar ul {
   display: flex;
   margin: 0;
+  gap: 40px;
 }
 
 .navbar li {
   list-style: none;
-  padding: 5px 20px;
 }
 
 .navbar a {
@@ -230,7 +230,6 @@ body {
   align-items: center;
   width: 100%;
   max-width: 1330px;
-  padding: 0 7px;
   margin: 10px;
 }
 
