@@ -15,7 +15,7 @@
         "title": "InfinityDotRun",
         "width": 1320,
         "height": 612,
-        "resizable": false,
+        "resizable": true,
         "fullscreen": false
       }
     ],
