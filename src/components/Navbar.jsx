@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
     return (
         <>
-            <nav className="navbar">
+            <nav className="nav">
                 {/* Logo */}
-                <div className="logo">
-                    <img src={logo} alt="NA" />
+                <div className="brand">
+                    <img src={logo} alt="Logo" />
                     <Link to="/">Infinity.Run</Link>
                 </div>
 

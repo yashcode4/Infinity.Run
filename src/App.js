@@ -33,7 +33,7 @@ function MainApp() {
       {/* Game component is always mounted (not inside <Routes>)
           But it's hidden when you're not on the "/Game" route.
           This prevents it from reloading/resetting when switching pages. */}
-      <div style={{ display: isGamePage ? "block" : "none" }}>
+      <div style={{ display: isGamePage ? "flex" : "none", flex: 1 }}>
         <Game />
       </div>
 

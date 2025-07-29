@@ -14,7 +14,7 @@ const Game = () => {
     }, []); // Runs ONLY ONCE after the first render
 
     return (
-        <div className="container game-canvas">
+        <div className="layout canvas">
             <canvas id="game"></canvas>
             <canvas id="game2"></canvas>
         </div>

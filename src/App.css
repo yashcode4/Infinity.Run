@@ -1,3 +1,6 @@
+/* =========================
+   Fonts
+========================= */
 @font-face {
   font-family: 'Pixelify Sans';
   src: url('./fonts/PixelifySans-Regular-Normal.woff2') format('woff2');
@@ -12,272 +15,220 @@
   font-style: normal;
 }
 
-/* CSS Reset */
+/* =========================
+   CSS Reset
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white;
-
-  /* Font Settings */
   font-family: 'Pixelify Sans', serif;
-  font-optical-sizing: auto;
   font-style: normal;
-  font-size: 25px;
   font-weight: 400;
+  color: white;
+  font-size: 1.25rem;
 }
 
+html,
 body {
-  background-color: rgb(0, 0, 0);
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #000;
 }
 
 #root {
-  width: 1366px;
-  /* Optional: Set a maximum width if needed */
-  height: 607px;
-  /* Optional: Set a maximum height if needed */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-/* Navbar */
-.navbar {
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Layout
+========================= */
+.layout {
+  flex: 1;
+  width: 100%;
+  padding: 0.4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   Navbar
+========================= */
+.nav {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
-  margin: 5px 20px;
-  padding: 0;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
 }
 
-/* Logo */
-.logo {
+.brand {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 0;
+  gap: 0.3rem;
 }
 
-.logo img {
+.brand img {
+  width: 24px;
   height: 24px;
-  width: 25px;
-  margin-bottom: 1px;
 }
 
-.logo a {
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
   list-style: none;
+}
+
+.nav a {
   text-decoration: none;
   color: white;
 }
 
-/* Menu */
-.navbar ul {
-  display: flex;
-  margin: 0;
-  gap: 40px;
+/* =========================
+   Hero Section
+========================= */
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.navbar li {
-  list-style: none;
+.hero h1 {
+  font-size: 3.5rem;
 }
 
-.navbar a {
+.hero a {
+  display: inline-block;
+  font-size: 2rem;
   text-decoration: none;
   color: white;
+  transition: filter 0.5s ease, transform 0.5s ease;
 }
 
-/* Utility Classes */
-.container {
-  height: 503px;
+.hero a:hover {
+  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
+}
+
+/* =========================
+   Info Section
+========================= */
+.section {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.description {
-  flex-direction: column;
-}
-
-/* Boxes */
-.box1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  height: 55%;
-  width: 100%;
-
+  height: 100%;
   padding: 10px 50px;
+  width: 100%;
 }
 
-.box1 h1 {
-  font-size: 95px;
+.section h1 {
+  font-size: 4.8rem;
   margin-bottom: 10px;
 }
 
-.box1 p {
-  font-size: 30px;
+.section p {
+  font-size: 1.5rem;
   text-align: center;
 }
 
-.box2 {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  padding: 20px 40px;
+.section .inifinity-run {
+  font-size: 5.5rem;
+  transition: filter .5s ease, transform .5s ease;
 }
 
-.box2 img {
+.section .inifinity-run:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
+}
+
+/* =========================
+   Image Group
+========================= */
+.img-group {
+  display: flex;
+  justify-content: center;
+  padding: 20px 40px;
+  width: 100%;
+}
+
+.img-group img {
   height: 80px;
   width: 80px;
-  margin: 30px 30px;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  /* Smooth transition for both zoom and glow */
+  margin: 30px;
+  transition: transform .3s ease, filter .3s ease;
 }
 
-.box2 img:hover {
+.img-group img:hover {
   cursor: pointer;
-  filter: drop-shadow(0 0 5px blue) drop-shadow(0 0 5px blue);
   transform: scale(1.1);
-  /* Zoom effect */
+  filter: drop-shadow(0 0 5px blue);
 }
 
-.box2 p {
-  font-size: 110px;
-  transition: filter 0.5s ease, transform 0.5s ease;
-  /* Transition for both filter and transform */
-}
-
-.box2 p:hover {
-  cursor: pointer;
-  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
-}
-
-/* Home */
-.para {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.home h1 {
-  font-size: 70px;
-}
-
-.home a {
-  font-size: 40px;
-  text-decoration: none;
-  color: white;
-  transition: filter 0.5s ease, transform 0.5s ease;
-}
-
-.home a:hover {
-  filter: drop-shadow(0 0 4px blue) drop-shadow(0 0 4px blue);
-}
-
-/* About Component */
-.social-icons {
+/* =========================
+   Canvas Section
+========================= */
+.canvas {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 50px;
-}
-
-.social-icons span {
-  font-size: 30px;
-}
-
-.social-icons a img {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  display: block;
-}
-
-/* Footer Component */
-.footer {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding: 10px 0;
-}
-
-/* Game CSS */
-.game-canvas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  padding-top: 30px;
-}
-
-/* Scoreboard Container */
-.scoreboard-container {
-  height: 503px;
-  display: flex;
   align-items: center;
-  flex-direction: column;
-  padding-bottom: 5px;
+  padding-top: 2rem;
 }
 
-/* Header */
-.scoreboard-header {
+/* =========================
+   Scoreboard
+========================= */
+.score-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.score-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 10px;
-  padding: 0 20px;
-  box-sizing: border-box;
+  padding: 0 1rem;
+  margin-bottom: 10px;
 }
 
-/* Header - Title */
-.scoreboard-title {
-  font-size: 36px;
-  margin: 0;
-  text-align: left;
+.score-head h1 {
+  font-size: 1.8rem;
 }
 
-/* Header - Delete Score Button */
-.btn-clear-scores {
-  background-color: #252525;
+.clear-btn {
+  background: #252525;
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
-/* Table Container */
-.scoreboard-table-wrapper {
-  padding: 0 20px;
-  /* Remove scrollbar */
-  overflow-y: auto;
-  /* Firefox */
-  scrollbar-width: none;
-  /* Internet Explorer 10+ */
-  -ms-overflow-style: none;
-
-  /* Ensures padding doesn't exceed width */
-  box-sizing: border-box;
+.table-wrap {
+  flex-grow: 1;
+  overflow-x: auto;
+  padding: 0 1rem;
 }
 
-.scoreboard-table-wrapper::-webkit-scrollbar {
-  /* Chrome, Safari, Edge */
-  display: none;
-}
-
-/* Table */
-table {
+.table {
   width: 100%;
   table-layout: fixed;
-  /* removes spacing between cells */
   border-collapse: collapse;
 }
 
-/* Table Head */
 table thead {
   position: sticky;
   top: 0px;
@@ -285,43 +236,32 @@ table thead {
   z-index: 1;
 }
 
-/* Table Cells – Head and Body */
-table thead th,
-table tbody td {
-  padding: 10px 20px;
+.table th,
+.table td {
   height: 40px;
+  padding: 10px 20px;
   text-align: left;
   font-family: 'Press Start 2P';
-  font-size: 16px;
+  font-size: 0.8rem;
 }
 
-/* Table Body - Hover Effect */
 table tbody tr:hover {
   background-color: rgba(182, 182, 182, 0.1);
   cursor: pointer;
 }
 
-/* Empty Row - No Score Available*/
-/* Prevent hover effects on the "No Scores Available" row */
-.scoreboard-empty-row:hover {
-  background-color: transparent;
-  cursor: default;
+/* Empty Score Box */
+.no-scores-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P';
+  font-size: 1rem;
+  padding-bottom: 6vh;
 }
 
-/* Style the single cell in the empty state row */
-.scoreboard-empty-row td {
-  text-align: center;
-  padding-top: 170px;
-  font-size: 18px;
-}
-
-/* Rank font style */
-.rank {
-  font-family: 'Pixelify Sans';
-  font-size: 28px;
-}
-
-/* Rank Color */
+/* Rank Colors */
 .rank.noob {
   color: #643d3d;
 }
@@ -344,29 +284,74 @@ table tbody tr:hover {
 
 .rank.pro {
   color: #00ffbf;
-  text-shadow: 0 0 8px #ffffff;
+  text-shadow: 0 0 8px #fff;
 }
 
 .rank.elite {
   color: #ff9800;
-  font-weight: bold;
   text-shadow: 0 0 8px #00e1ff;
 }
 
 .rank.lethal {
-  color: #000000;
-  font-weight: bold;
+  color: #000;
   text-shadow: 0 0 5px #f44336, 0 0 10px #ff0000;
 }
 
 .rank.master {
   color: #c9c9c9;
-  font-weight: bold;
   text-shadow: 0 0 10px #0066ff, 0 0 15px #0066ff;
 }
 
 .rank.conqueror {
-  color: rgb(255, 255, 255);
-  font-weight: bold;
+  color: white;
   text-shadow: 0 0 10px gold, 0 0 20px gold;
+}
+
+/* =========================
+   Footer
+========================= */
+.footer {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* =========================
+   Social Icons
+========================= */
+.social {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 45px;
+}
+
+.social span {
+  font-size: 1.5rem;
+}
+
+.social img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 768px) {
+  .score-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav ul {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .img-group img {
+    width: 48px;
+    height: 48px;
+  }
 }

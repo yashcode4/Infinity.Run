@@ -7,12 +7,11 @@ import anime_mode from "../images/mode-images/anime_mode.png";
 const Rules = () => {
   return (
     <>
-      <div className="description container">
-        <div className="box1">
-          <h1>Rules</h1>
-          <p>Player will jump when you press the correct input that matches the respective mode's input. There are a total of 10 modes in the game, each with its own corresponding input.</p>
-        </div>
-        <div className="box2">
+      <div className="layout section">
+        <h1>Rules</h1>
+        <p>Player will jump when you press the correct input that matches the respective mode's input. There are a total of 10 modes in the game, each with its own corresponding input.</p>
+
+        <div className="img-group">
           <img src={pi_mode} alt="NA" />
           <img src={netflix_mode} alt="NA" />
           <img src={marvel_mode} alt="NA" />
@@ -20,6 +19,7 @@ const Rules = () => {
           <img src={anime_mode} alt="NA" />
         </div>
       </div>
+
     </>
   )
 }

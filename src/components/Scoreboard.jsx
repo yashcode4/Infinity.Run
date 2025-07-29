@@ -30,59 +30,57 @@ const Scoreboard = () => {
 
   return (
     <>
-      <div className="scoreboard-container">
+      <div className="layout score-wrap">
 
         {/* Header */}
-        <div className="scoreboard-header">
-          <h1 className="scoreboard-title">Scoreboard</h1>
+        <div className="score-head">
+          <h1>Scoreboard</h1>
 
-          <button className="btn-clear-scores" onClick={deleteScores}>
+          <button className="clear-btn" onClick={deleteScores}>
             {confirmingDelete ? "Are You Sure ?" : "Delete Scores"}
           </button>
         </div>
 
         {/* Table Container */}
-        <div className="scoreboard-table-wrapper">
-          <table>
-            <colgroup>
-              <col style={{ width: "18%" }} />
-              <col style={{ width: "20%" }} />
-              <col style={{ width: "22%" }} />
-              <col style={{ width: "20%" }} />
-              <col style={{ width: "20%" }} />
-            </colgroup>
-            <thead>
-              <tr>
-                <th className="col-index">Index</th>
-                <th className="col-mode">Mode</th>
-                <th className="col-rank">Rank</th>
-                <th className="col-score">Score</th>
-                <th className="col-date">Date</th>
-              </tr>
-            </thead>
+        {scores.length > 0 ? (
+          <div className="table-wrap">
+            <table className="table">
+              <colgroup>
+                <col style={{ width: "18%" }} />
+                <col style={{ width: "20%" }} />
+                <col style={{ width: "22%" }} />
+                <col style={{ width: "20%" }} />
+                <col style={{ width: "20%" }} />
+              </colgroup>
 
-            <tbody>
-              {scores.length > 0 ? (
-                scores.map((entry, i) => (
-                  <tr key={i}>
-                    <td className="cell-index">{i + 1}</td>
-                    <td className="cell-mode">{entry.mode}</td>
-                    <td className={`rank ${entry.rank.toLowerCase()}`}>{entry.rank}</td>
-                    <td className="cell-score">{entry.score}</td>
-                    <td className="cell-date">{entry.date}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr className="scoreboard-empty-row">
-                  <td colSpan="5">No scores available</td>
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Mode</th>
+                  <th>Rank</th>
+                  <th>Score</th>
+                  <th>Date</th>
                 </tr>
-              )}
-            </tbody>
+              </thead>
 
-          </table>
-
-        </div>
-
+              <tbody>
+                {scores.map((entry, i) => (
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{entry.mode}</td>
+                    <td className={`rank ${entry.rank.toLowerCase()}`}>{entry.rank}</td>
+                    <td>{entry.score}</td>
+                    <td>{entry.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="no-scores-box">
+            No scores available
+          </div>
+        )}
       </div>
     </>
   );
