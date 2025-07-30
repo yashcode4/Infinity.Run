@@ -19,10 +19,9 @@ import Input from "./InputObjects/Input";
 
 // Main function to initialize and start the Game
 export default function main() {
-    // Get the canvas element and its 2D rendering context
+    // Get canvas and its 2D rendering context
     const canvas = document.getElementById("game"); // First canvas
     const ctx = canvas.getContext("2d");
-
     const canvas2 = document.getElementById("game2"); // Second canvas 
     const ctx2 = canvas2.getContext("2d");
 
@@ -31,23 +30,21 @@ export default function main() {
     const GAME_SPEED_INCREMENT = 0.00001; // Speed increase over time
 
     // Canvas Dimensions
-    const GAME_WIDTH = 1280;
-    const GAME_HEIGHT = 210;
-    const GAME_WIDTH2 = 1200;
-    const GAME_HEIGHT2 = 200;
+    const GAME_WIDTH = 1280, GAME_HEIGHT = 210;
+    const GAME_WIDTH2 = 1150, GAME_HEIGHT2 = 200;
 
     // Player's dimensions
-    const PLAYER_WIDTH = 88 / 1.5;
-    const PLAYER_HEIGHT = 94 / 1.5;
+    const PLAYER_WIDTH = 88 / 1.5, PLAYER_HEIGHT = 94 / 1.5;
 
     // Player's jump height limits
-    const MAX_JUMP_HEIGHT = GAME_HEIGHT;
-    const MIN_JUMP_HEIGHT = 150;
+    const MAX_JUMP_HEIGHT = GAME_HEIGHT, MIN_JUMP_HEIGHT = 150;
 
     // Ground properties
-    const GROUND_WIDTH = 2400;
-    const GROUND_HEIGHT = 24;
+    const GROUND_WIDTH = 2400, GROUND_HEIGHT = 24;
     const GROUND_AND_OBSTACLE_SPEED = 0.5; // Movement speed for ground and obstacles
+
+    // Mode icon dimensions
+    const MODE_ICON_WIDTH = 70, MODE_ICON_HEIGHT = 70;
 
     // Obstacles configuration: width, height, and images
     const OBSTACLES_CONFIG = [
@@ -59,68 +56,87 @@ export default function main() {
         { width: 30 / 1.5, height: 108 / 1.5, image: obsImage6 }
     ];
 
-    // Mode dimensions
-    const MODE_ICON_WIDTH = 70;
-    const MODE_ICON_HEIGHT = 70;
+    // Game objects
+    let player, ground, obsController, score;
+    let mode, separator, input;
 
-    // Declare game objects and state variables
-    let player = null; // The player character
-    let ground = null; // The ground
-    let obsController = null; // Controls obstacles generation and movement
-    let score = null; // Score tracker
-
-    // Canvas2 objects
-    let mode = null;
-    let separator = null;
-    let input = null;
-
+    // Game state
+    let scaleRatio = null;
     let previousTime = null; // Keeps track of the last frame's time
     let gameSpeed = GAME_SPEED_START; // Current game speed
     let gameOver = false; // Indicates if the game is over
     let hasAddEventListenerForRestart = false; // Ensures event listener for restarting is added only once
     let waitingToStart = true; // Indicates if the game is waiting for the player to start
 
-    // Create and initialize game objects
+    // Initialize all game objects
     function createSprites() {
+        const playerWidth = PLAYER_WIDTH * scaleRatio;
+        const playerHeight = PLAYER_HEIGHT * scaleRatio;
+        const minJumpHeight = MIN_JUMP_HEIGHT * scaleRatio;
+        const maxJumpHeight = MAX_JUMP_HEIGHT * scaleRatio;
+
+        const groundWidth = GROUND_WIDTH * scaleRatio;
+        const groundHeight = GROUND_HEIGHT * scaleRatio;;
+
         // Create player object
-        player = new Player(ctx, PLAYER_WIDTH, PLAYER_HEIGHT, MIN_JUMP_HEIGHT, MAX_JUMP_HEIGHT);
+        player = new Player(ctx, playerWidth, playerHeight, minJumpHeight, maxJumpHeight, scaleRatio);
 
         // Create ground object
-        ground = new Ground(ctx, GROUND_WIDTH, GROUND_HEIGHT, GROUND_AND_OBSTACLE_SPEED);
+        ground = new Ground(ctx, groundWidth, groundHeight, GROUND_AND_OBSTACLE_SPEED, scaleRatio);
 
         // Load obstacle images into objects with dimensions
-        const obstaclesImages = OBSTACLES_CONFIG.map((obstacle) => {
-            const image = new Image();
-            image.src = obstacle.image;
-            return {
-                image: image,
-                width: obstacle.width,
-                height: obstacle.height,
-            };
+        const obstacles = OBSTACLES_CONFIG.map(o => {
+            const img = new Image();
+            img.src = o.image;
+            return { image: img, width: o.width * scaleRatio, height: o.height * scaleRatio };
         });
 
-        // Create obstacles controller and score
-        obsController = new ObsController(ctx, obstaclesImages, GROUND_AND_OBSTACLE_SPEED);
-        score = new Score(ctx);
+        // Create obstacles controller object
+        obsController = new ObsController(ctx, obstacles, scaleRatio, GROUND_AND_OBSTACLE_SPEED);
+
+        // Create score object
+        score = new Score(ctx, scaleRatio);
 
         // Canvas2 Objects
-        input = new Input(ctx2, player); // pass player for jumpPressed state
-        separator = new Separator(ctx2);
-        mode = new Mode(ctx2, MODE_ICON_WIDTH, MODE_ICON_HEIGHT, input); // pass input
+        input = new Input(ctx2, player, scaleRatio); // pass player for jumpPressed state
+        separator = new Separator(ctx2, scaleRatio);
+        mode = new Mode(ctx2, MODE_ICON_WIDTH, MODE_ICON_HEIGHT, input, scaleRatio); // pass input
     }
 
-    // Set canvas dimensions and initialize game objects
+    // Set canvas sizes and scale ratio
     function setScreen() {
-        canvas.width = GAME_WIDTH;
-        canvas.height = GAME_HEIGHT;
+        scaleRatio = getScaleRatio();
 
-        canvas2.width = GAME_WIDTH2;
-        canvas2.height = GAME_HEIGHT2;
+        canvas.width = GAME_WIDTH * scaleRatio;
+        canvas.height = GAME_HEIGHT * scaleRatio;
+
+        canvas2.width = GAME_WIDTH2 * scaleRatio;
+        canvas2.height = GAME_HEIGHT2 * scaleRatio;
 
         createSprites();
     }
 
-    // Clear canvases for the next frame
+    // Return scale ratio based on screen size
+    function getScaleRatio() {
+        const screenHeight = Math.min(
+            window.innerHeight,
+            document.documentElement.clientHeight
+        );
+
+        const screenWidth = Math.min(
+            window.innerWidth,
+            document.documentElement.clientWidth
+        );
+
+        //window is wider than the game width
+        if (screenWidth / screenHeight < GAME_WIDTH / GAME_HEIGHT) {
+            return screenWidth / GAME_WIDTH;
+        } else {
+            return screenHeight / GAME_HEIGHT;
+        }
+    }
+
+    // Clear both canvas for the next frame
     function clearScreen() {
         ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -129,86 +145,85 @@ export default function main() {
 
     // Set up game reset on game over
     function setupGameReset() {
-        if (!hasAddEventListenerForRestart) {
-            hasAddEventListenerForRestart = true;
+        if (hasAddEventListenerForRestart) return;
+        hasAddEventListenerForRestart = true;
 
-            // Define the event handler function
-            const handleKeyUp = (event) => {
+        // Define the event handler function
+        const handleKeyUp = (event) => {
 
-                if (event.key === " " && gameOver) {
-                    reset();
+            if (event.key === " " && gameOver) {
+                reset();
 
-                    // After reset, remove the event listener to avoid further calls
-                    document.removeEventListener("keyup", handleKeyUp);
-                }
-            };
+                // After reset, remove the event listener to avoid further calls
+                document.removeEventListener("keyup", handleKeyUp);
+            }
+        };
 
-            // Add an event listener to reset the game after a delay
-            setTimeout(() => {
-                document.addEventListener("keyup", handleKeyUp);
-            }, 1000);
-        }
+        // Add an event listener to reset the game after a delay
+        setTimeout(() => {
+            document.addEventListener("keyup", handleKeyUp);
+        }, 500);
     }
 
-    // Reset the game to its initial state
+    // Reset all game state to its initial state
     function reset() {
         hasAddEventListenerForRestart = false;
         gameOver = false;
         waitingToStart = true; //Wait for a new start after reset
+        gameSpeed = GAME_SPEED_START;
+
         ground.reset();
         obsController.reset();
         score.reset();
-        gameSpeed = GAME_SPEED_START;
-
         player.reset();
         player.playerCollided = false;
 
         mode.modeChangeEnabled = true;
         input.inputDisabled = false;
-
-        // Reset the mode's input 
         input.resetInput();
     }
 
-    // "Game Start" text
+   // Display "Let's Go!!!" before game starts
     function showStartGameText() {
-        const fontSize = 90;
+        const fontSize = 95 * scaleRatio;
         ctx.font = `${fontSize}px Pixelify Sans`;
         ctx.fillStyle = "white";
-        const x = 418;
-        const y = 120;
+        ctx.textAlign = "center";
+
+        const x = canvas.width / 2;
+        const y = canvas.height / 1.65;
         ctx.fillText("Let's Go !!!", x, y);
     }
 
-    // "Game Over" text
+    // Display "Game Over" message
     function showGameOver() {
-        const fontSize = 120;
+        const x = canvas.width / 2;
+        const y = canvas.height / 2.7;
+        const y2 = canvas.height / 1.8;
+
+        const fontSize = 120 * scaleRatio;
+        const smallFont = 30 * scaleRatio;
+
         ctx.font = `${fontSize}px Pixelify Sans`;
         ctx.fillStyle = "white";
         ctx.strokeStyle = "black";
         ctx.lineWidth = 5;
-
-        const x = 335;
-        const y = 78;
+        ctx.textAlign = "center";
 
         ctx.strokeText("GAME OVER", x, y);
         ctx.fillText("GAME OVER", x, y);
 
-        const fontSize2 = 30;
-        ctx.font = `${fontSize2}px Pixelify Sans`;
-        const x2 = 500;
-        const y2 = 120;
-
-        ctx.strokeText("Space for Restart", x2, y2);
-        ctx.fillText("Space for Restart", x2, y2);
+        ctx.font = `${smallFont}px Pixelify Sans`;
+        ctx.strokeText("Space for Restart", x, y2);
+        ctx.fillText("Space for Restart", x, y2);
     }
 
-    // Gradually increase the game speed
+    // Increase game speed gradually
     function updateGameSpeed(frameTimeDelta) {
         gameSpeed += frameTimeDelta * GAME_SPEED_INCREMENT;
     }
 
-    // Main game loop: updates game objects and handles drawing
+    // Game loop: update and draw everything
     function gameLoop(currentTime) {
         if (previousTime == null) {
             previousTime = currentTime;
@@ -230,7 +245,7 @@ export default function main() {
             player.update(gameSpeed, frameTimeDelta);
             score.update(frameTimeDelta);
             updateGameSpeed(frameTimeDelta);
-
+            
             mode.modeChangeEnabled = false; // disable mode change during game progress
         }
 
@@ -256,12 +271,8 @@ export default function main() {
         separator.draw();
 
         // Show "Game Over" or "Start Game" texts if needed
-        if (waitingToStart) {
-            showStartGameText();
-        }
-        if (gameOver) {
-            showGameOver();
-        }
+        if (waitingToStart) showStartGameText();
+        if (gameOver) showGameOver();
 
         // Request the next animation frame
         requestAnimationFrame(gameLoop);

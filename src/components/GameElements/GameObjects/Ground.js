@@ -1,15 +1,16 @@
 import groundImageSrc from "../../../images/game-images/ground.png"
 
 export default class Ground {
-    constructor(ctx, width, height, speed) {
+    constructor(ctx, width, height, speed, scaleRatio) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
         this.width = width;
         this.height = height;
-        this.speed = speed; // Speed at which the ground moves
+        this.speed = speed; // Ground movement speed factor
+        this.scaleRatio = scaleRatio;
 
-        this.x = 0; // Horizontal position of the ground
-        this.y = this.canvas.height - this.height; // Position at the bottom of the canvas
+        this.x = 0; // Initial horizontal position
+        this.y = this.canvas.height - this.height; // Align to bottom of canvas
 
         this.groundImage = new Image();
         this.groundImage.src = groundImageSrc
@@ -17,18 +18,19 @@ export default class Ground {
 
     // Updates the ground's position to create the illusion of movement
     update(gameSpeed, frameTimeDelta) {
-        this.x -= gameSpeed * frameTimeDelta * this.speed;
+        // Shift ground left over time to simulate forward movement
+        this.x -= gameSpeed * frameTimeDelta * this.speed * this.scaleRatio;
     }
 
-    // Draws the ground on the canvas
+    // Draws two ground images side-by-side to create an endless scrolling effect
     draw() {
         // Save the current canvas state
         this.ctx.save();
 
-        // Set the opacity to 70%
+        // Slight transparency effect for ground
         this.ctx.globalAlpha = 0.7;
 
-        // Draw the first ground image
+        // First ground image
         this.ctx.drawImage(
             this.groundImage,
             this.x,
@@ -37,7 +39,7 @@ export default class Ground {
             this.height
         );
 
-        // Draw the second ground image (for seamless loop)
+        // Second ground image placed right next to the first
         this.ctx.drawImage(
             this.groundImage,
             this.x + this.width,
@@ -55,7 +57,7 @@ export default class Ground {
         }
     }
 
-    // Resets the ground's position
+    // Reset ground to its original starting position
     reset() {
         this.x = 0;
     }

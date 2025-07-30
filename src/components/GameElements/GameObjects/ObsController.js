@@ -1,27 +1,28 @@
 import Obstacle from "./Obstacle";
 
 export default class ObsController {
-    // Minimum and maximum intervals for obstacle creation
+    // Minimum and maximum interval (in ms) between obstacle spawns
     OBSTACLES_INTERVAL_MIN = 500;
     OBSTACLE_INTERVAL_MAX = 2000;
 
-    // Time until the next obstacle spawns
+    // Countdown until next obstacle appears
     nextObstacleInterval = null;
 
-    // List of active obstacles
+    // Active obstacles on screen
     obstacles = [];
 
-    constructor(ctx, obstaclesImages, speed) {
+    constructor(ctx, obstaclesImages, scaleRatio, speed) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
-        this.obstaclesImages = obstaclesImages;
-        this.speed = speed;
+        this.obstaclesImages = obstaclesImages;  // Array of obstacle image objects
+        this.scaleRatio = scaleRatio;
+        this.speed = speed; // Horizontal scrolling speed for obstacles
 
         // Initialize the next obstacle interval
-        this.setNextObstacleTime();
+        this.setNextObstacleTime(); // Initialize spawn timer
     }
 
-    // Sets the interval until the next obstacle spawns
+    // Set random time for next obstacle spawn
     setNextObstacleTime() {
         const num = this.getRandomNumber(
             this.OBSTACLES_INTERVAL_MIN,
@@ -31,20 +32,20 @@ export default class ObsController {
         this.nextObstacleInterval = num;
     }
 
-    // Generates a random number between min and max
+    // Generate a random number between min and max (inclusive)
     getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    // Creates a new obstacle and adds it to the list
+    // Create a new obstacle instance and add to the list
     createObstacle() {
         // Randomly select an obstacle image
         const index = this.getRandomNumber(0, this.obstaclesImages.length - 1);
         const obstacleImage = this.obstaclesImages[index];
 
         // Calculate obstacle's starting position
-        const x = this.canvas.width * 1.5;
-        const y = this.canvas.height - obstacleImage.height - 7;
+        const x = this.canvas.width * 1.5; // Start off-screen
+        const y = this.canvas.height - obstacleImage.height - 7 * this.scaleRatio; // Ground aligned
 
         // Create and add a new obstacle instance
         const obstacle = new Obstacle(
@@ -59,7 +60,7 @@ export default class ObsController {
         this.obstacles.push(obstacle); // Add to the list
     }
 
-    // Update obstacles and spawn timing
+    // Update all obstacles and manage spawn timing
     update(gameSpeed, frameTimeDelta) {
         // Check if it's time to spawn a new obstacle
         if (this.nextObstacleInterval <= 0) {
@@ -68,25 +69,26 @@ export default class ObsController {
         }
         this.nextObstacleInterval -= frameTimeDelta; // Decrease timer
 
-        // Move all obstacles
+        // Move / Update all obstacles positions
         this.obstacles.forEach((obstacle) => {
-            obstacle.update(this.speed, gameSpeed, frameTimeDelta);
+            obstacle.update(this.speed, gameSpeed, frameTimeDelta, this.scaleRatio);
         });
 
         // Remove obstacles that move off-screen
         this.obstacles = this.obstacles.filter((obstacle) => obstacle.x > -obstacle.width);
     }
 
+    // Draw all active obstacles on canvas
     draw() {
         this.obstacles.forEach((obstacle) => obstacle.draw());
     }
 
-    // Check if obstacle collides with player
+    // Check for collision between any obstacle and the player
     collideWith(sprite) {
         return this.obstacles.some((obstacle) => obstacle.collideWith(sprite));
     }
 
-    // Clear all obstacles
+    // Clear all current obstacles
     reset() {
         this.obstacles = [];
     }

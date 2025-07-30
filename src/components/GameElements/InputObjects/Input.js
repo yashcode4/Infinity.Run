@@ -1,26 +1,25 @@
-import { PI, /* SQRT2, SQRT3, EULER, */ Numbers, Letters, AlphaNumeric, Symbols, Binary, Netflix, Marvel, DC, Anime } from './Constants.js';
+import { PI, Numbers, Letters, AlphaNumeric, Symbols, Binary, Netflix, Marvel, DC, Anime } from './Constants.js';
 
 export default class Input {
-    constructor(ctx, player) {
+    constructor(ctx, player, scaleRatio) {
         this.ctx = ctx;
-        this.x = 155;
-        this.y = 127;
+        this.scaleRatio = scaleRatio;
+
+        this.x = 155 * this.scaleRatio;
+        this.y = 127 * this.scaleRatio;
 
         this.player = player;
 
-        this.typedInput = ""; // User input
-        this.currentIndex = 0; // Current match index
-        this.precision = 30; // Number of digits to display
+        this.typedInput = ""; // All user-typed characters
+        this.currentIndex = 0; // Position in the input string
+        this.precision = 30; // Number of characters shown at once
 
-        this.inputToMatch = null; // The current correct character to match
-        this.inputDisabled = false; // Input switch
+        this.inputToMatch = null; // Character to match
+        this.inputDisabled = false; // Disables input when true
 
         // Maps each mode name to its corresponding input string
         this.input = {
             PI,
-            // SQRT2,
-            // SQRT3,
-            // EULER,
             Numbers,
             Letters,
             AlphaNumeric,
@@ -35,10 +34,9 @@ export default class Input {
         // Default mode
         this.currentMode = "PI";
 
-        // Setup keyboard listeners
+        // Remove previous listeners (if any) and add new ones
         document.removeEventListener("keydown", this.keydown);
         document.removeEventListener("keyup", this.keyup);
-
         document.addEventListener("keydown", this.keydown);
         document.addEventListener("keyup", this.keyup);
     }
@@ -50,14 +48,14 @@ export default class Input {
         return repeatedInput.substring(0, index + this.precision);
     }
 
-    // Reset function for reset the typed input, currentIndex, and inputToMatch
+    // Resets the typed input and index tracking
     resetInput() {
         this.typedInput = "";
         this.currentIndex = 0;
         this.inputToMatch = null;
     }
 
-    // Update the current mode
+    // Updates current input mode
     updateMode(mode) {
         this.currentMode = mode;
         this.typedInput = "";
@@ -85,7 +83,7 @@ export default class Input {
                 this.typedInput += event.key;
                 this.currentIndex++;
 
-                // Set player's jump state
+                // Trigger jump
                 this.player.jumpPressed = true;
             }
         }
@@ -98,11 +96,13 @@ export default class Input {
         }
     };
 
+    // Draw upcoming input characters
     draw() {
-        this.ctx.font = "95px Calibri";
+        const fontSize = 90 * this.scaleRatio;
+        this.ctx.font = `${fontSize}px Calibri`;
+
         let xPos = this.x;
         let yPos = this.y;
-
         const inputToDraw = this.computeInput(this.currentMode, this.currentIndex);
 
         for (let i = this.currentIndex; i < inputToDraw.length; i++) {

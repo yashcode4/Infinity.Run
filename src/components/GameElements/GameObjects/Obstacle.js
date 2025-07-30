@@ -6,21 +6,22 @@ export default class Obstacle {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.image = image;
+        this.image = image; // Obstacle image to draw
     }
 
-    // Move obstacle to the left
-    update(speed, gameSpeed, frameTimeDelta) {
-        this.x -= speed * gameSpeed * frameTimeDelta;
+    // Update obstacle position (moves to the left)
+    update(speed, gameSpeed, frameTimeDelta, scaleRatio) {
+        this.x -= speed * gameSpeed * frameTimeDelta * scaleRatio;
     }
 
+    // Draw obstacle on canvas
     draw() {
         this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 
-    // Check collision with the player
+    // Basic rectangle collision check with player
     collideWith(sprite) {
-        const adjustBy = 1.4;
+        const adjustBy = 1.4; // Slightly shrink collision box for better gameplay feel
         if (
             sprite.x < this.x + this.width / adjustBy &&
             sprite.x + sprite.width / adjustBy > this.x &&

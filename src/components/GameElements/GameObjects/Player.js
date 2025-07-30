@@ -4,16 +4,17 @@ import playerRunImg1 from '../../../images/game-images/run_image1.png';
 import playerRunImg2 from '../../../images/game-images/run_image2.png';
 
 export default class Player {
-    constructor(ctx, width, height, minJumpHeight, maxJumpHeight) {
+    constructor(ctx, width, height, minJumpHeight, maxJumpHeight, scaleRatio) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
         this.width = width;
         this.height = height;
         this.minJumpHeight = minJumpHeight;
         this.maxJumpHeight = maxJumpHeight;
+        this.scaleRatio = scaleRatio;
 
-        this.x = 20; // Starting x position
-        this.y = this.canvas.height - this.height - 8; // Starting y position
+        this.x = 20 * scaleRatio; // Starting x position
+        this.y = this.canvas.height - this.height - 8 * scaleRatio; // Starting y position
         this.yStandingPosition = this.y;
 
         // Standing Image
@@ -70,15 +71,15 @@ export default class Player {
         if (this.jumpInProgress && !this.falling) {
             if (this.y > this.canvas.height - this.minJumpHeight ||
                 (this.y > this.canvas.height - this.maxJumpHeight && this.jumpPressed)) {
-                this.y -= this.JUMP_SPEED * frameTimeDelta;
-                this.x += 0.04 * frameTimeDelta; // Slight right movement while going up
+                this.y -= this.JUMP_SPEED * frameTimeDelta * this.scaleRatio;
+                this.x += 0.04 * frameTimeDelta * this.scaleRatio; // Slight right movement while going up
             } else {
                 this.falling = true; // Start falling after reaching peak
             }
         } else if (this.y < this.yStandingPosition) {
             // If player is falling, apply gravity
-            this.y += this.GRAVITY * frameTimeDelta;
-            this.x += 0.02 * frameTimeDelta; // Continue slight right movement while falling
+            this.y += this.GRAVITY * frameTimeDelta * this.scaleRatio;
+            this.x += 0.02 * frameTimeDelta * this.scaleRatio; // Continue slight right movement while falling
 
             if (this.y >= this.yStandingPosition) {
                 // Once player reaches ground, stop falling and reset state
@@ -113,16 +114,16 @@ export default class Player {
     }
 
     reset() {
-        this.y = this.canvas.height - this.height - 1.5; // Ensure player starts on the ground
+        // Reset X and Y position back to original
+        this.x = 20 * this.scaleRatio;
+        this.y = this.canvas.height - this.height - 8 * this.scaleRatio;
+
+        this.yStandingPosition = this.y;
         this.image = this.standingStillImage; // Set standing image
 
         // Reset Player's jump and falling states
         this.jumpPressed = false;
         this.jumpInProgress = false;
         this.falling = false;
-
-        // Reset X and Y position back to original
-        this.x = 20;
-        this.y = this.canvas.height - this.height - 8;
     }
 }

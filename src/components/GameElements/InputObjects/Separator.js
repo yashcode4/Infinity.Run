@@ -1,16 +1,19 @@
 export default class Separator {
-    constructor(ctx, x, y) {
+    constructor(ctx, scaleRatio) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
+        this.scaleRatio = scaleRatio;
 
-        this.x = 100; 
-        this.y = 135; 
-    }                            
+        // Colon position on canvas
+        this.x = 100 * scaleRatio;
+        this.y = 135 * scaleRatio;
+    }
 
+    // Draw a colon (:) as a visual separator between input and mode
     draw() {
-        this.ctx.font = `150px Pixelify Sans`;
+        const fontSize = 150 * this.scaleRatio;
+        this.ctx.font = `${fontSize}px Pixelify Sans`;
         this.ctx.fillStyle = "white";
         this.ctx.fillText(":", this.x, this.y); // Draw colon at specified position
     }
 }
-

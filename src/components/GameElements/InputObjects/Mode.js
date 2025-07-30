@@ -1,7 +1,4 @@
 import pi_mode from "../../../images/mode-images/pi_mode.png";
-/* import rootTwo_mode from "../../../images/mode-images/rootTwo_mode.png";
-import rootThree_mode from "../../../images/mode-images/rootThree_mode.png";
-import euler_mode from "../../../images/mode-images/euler_mode.png"; */
 import ran_num_mode from "../../../images/mode-images/ran_num_mode.png";
 import ran_let_mode from "../../../images/mode-images/ran_let_mode.png";
 import ran_let_num_mode from "../../../images/mode-images/ran_let_num_mode.png";
@@ -13,26 +10,24 @@ import dc_mode from "../../../images/mode-images/dc_mode.png";
 import anime_mode from "../../../images/mode-images/anime_mode.png";
 
 export default class Mode {
-    constructor(ctx, width, height, input) {
+    constructor(ctx, width, height, input, scaleRatio) {
         this.ctx = ctx;
         this.canvas = ctx.canvas;
-        this.width = width;
-        this.height = height;
+        this.scaleRatio = scaleRatio;
 
-        this.currentMode = ''; // Currently displayed mode
+        this.width = width * scaleRatio;
+        this.height = height * scaleRatio;
+
         this.currentIndex = 0; // Index of the current mode in the array
-        this.typedInput = ''; // Input typed by the user
+        this.image = this.loadImage(pi_mode); // Load the initial mode image (PI mode)
 
-        // Position of the mode on canvas
-        this.x = 10;
-        this.y = 65;
+        // Position of the mode icon on canvas
+        this.x = 10 * scaleRatio;
+        this.y = 65 * scaleRatio;
 
-        // Arrays of mode images and their associated keys
+        // Mode images and their labels
         this.modeImages = [
             pi_mode,
-            // rootTwo_mode, 
-            // rootThree_mode, 
-            // euler_mode,
             ran_num_mode,
             ran_let_mode,
             ran_let_num_mode,
@@ -45,9 +40,6 @@ export default class Mode {
 
         this.modeKeys = [
             "PI",
-            // "√2",
-            // "√3",
-            // "e",
             "Numbers",
             "Letters",
             "AlphaNumeric",
@@ -59,16 +51,13 @@ export default class Mode {
             "Anime"
         ];
 
-        this.currentIndex = 0; // Start with the first mode image
-        this.image = this.loadImage(this.modeImages[this.currentIndex]); // Load the first mode image
-
-        // Update the displayed input when a new mode is selected
+        // Reference to Input instance
         this.input = input;
         this.input.updateMode(this.modeKeys[this.currentIndex]);
 
         this.modeChangeEnabled = true; // mode switch
 
-        // Hover effects variables
+        // Hover effect and animation variables
         this.isHovered = false;
         this.currentGlow = 0; // Current shadow blur for hover effect
         this.targetGlow = 0; // Target shadow blur for hover effect
@@ -78,14 +67,14 @@ export default class Mode {
         this.canvas.addEventListener("click", (e) => this.handleClick(e));
     }
 
-    // Load an image from the source, change the mode when click
+    // Create an image from source path
     loadImage(src) {
         const img = new Image();
         img.src = src;
         return img;
     }
 
-    // Handle mouse movement (for hover effect)
+    // Track mouse position for hover highlight
     handleMouseMove(event) {
         const rect = this.canvas.getBoundingClientRect();
         const scaleX = this.canvas.width / rect.width;
@@ -96,6 +85,7 @@ export default class Mode {
 
         // Check if the mouse is hovering over the mode
         const isHovering = mouseX >= this.x && mouseX <= this.x + this.width && mouseY >= this.y && mouseY <= this.y + this.height;
+
         this.targetGlow = isHovering ? 5 : 0;
         this.canvas.style.cursor = isHovering ? "pointer" : "default";
         this.isHovered = isHovering;
@@ -120,7 +110,7 @@ export default class Mode {
         }
     }
 
-    // Draw the mode and its associated input
+    // Render mode icon and its effect
     draw() {
         this.updateGlow();
 
@@ -133,7 +123,7 @@ export default class Mode {
         // Reset filter settings to avoid affecting other drawing operations
         this.ctx.filter = "none";
 
-        // Draw the input (if any)
+        // Draw the associated input field
         this.input.draw();
     }
 }
