@@ -201,15 +201,7 @@ canvas {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-y: auto;
-  /* Firefox */
-  scrollbar-width: none;
-  /* IE and Edge */
-  -ms-overflow-style: none;
-}
-
-.score-wrap::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  overflow-y: hidden;
 }
 
 .score-head {
@@ -236,6 +228,16 @@ canvas {
 .table-wrap {
   flex-grow: 1;
   padding: 0 1rem;
+  overflow-y: auto;
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE and Edge */
+  -ms-overflow-style: none;
+}
+
+.table-wrap::-webkit-scrollbar {
+  /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .table {
