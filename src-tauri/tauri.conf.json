@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "InfinityDotRun",
-        "width": 1320,
-        "height": 612,
+        "width": 1280,
+        "height": 720,
         "resizable": true,
         "fullscreen": false
       }
