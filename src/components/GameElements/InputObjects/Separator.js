@@ -6,7 +6,7 @@ export default class Separator {
 
         // Colon position on canvas
         this.x = 100 * scaleRatio;
-        this.y = 135 * scaleRatio;
+        this.y = 130 * scaleRatio;
     }
 
     // Draw a colon (:) as a visual separator between input and mode

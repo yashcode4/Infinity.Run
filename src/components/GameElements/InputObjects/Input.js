@@ -6,7 +6,7 @@ export default class Input {
         this.scaleRatio = scaleRatio;
 
         this.x = 155 * this.scaleRatio;
-        this.y = 127 * this.scaleRatio;
+        this.y = 122 * this.scaleRatio;
 
         this.player = player;
 

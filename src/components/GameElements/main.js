@@ -31,7 +31,7 @@ export default function main() {
 
     // Canvas Dimensions
     const GAME_WIDTH = 1280, GAME_HEIGHT = 210;
-    const GAME_WIDTH2 = 1150, GAME_HEIGHT2 = 200;
+    const GAME_WIDTH2 = 1150, GAME_HEIGHT2 = 180;
 
     // Player's dimensions
     const PLAYER_WIDTH = 88 / 1.5, PLAYER_HEIGHT = 94 / 1.5;

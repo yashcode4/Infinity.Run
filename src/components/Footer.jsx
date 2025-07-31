@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='footer'>Made with ❤️ by Yash Kumar</div>
+    <div className='footer'>🔥 Made by Yash Kumar</div>
   )
 }
 

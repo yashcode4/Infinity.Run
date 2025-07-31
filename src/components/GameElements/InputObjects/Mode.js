@@ -23,7 +23,7 @@ export default class Mode {
 
         // Position of the mode icon on canvas
         this.x = 10 * scaleRatio;
-        this.y = 65 * scaleRatio;
+        this.y = 60 * scaleRatio;
 
         // Mode images and their labels
         this.modeImages = [
