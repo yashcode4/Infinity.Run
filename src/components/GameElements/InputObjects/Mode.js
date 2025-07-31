@@ -1,13 +1,14 @@
-import pi_mode from "../../../images/mode-images/pi_mode.png";
-import ran_num_mode from "../../../images/mode-images/ran_num_mode.png";
-import ran_let_mode from "../../../images/mode-images/ran_let_mode.png";
-import ran_let_num_mode from "../../../images/mode-images/ran_let_num_mode.png";
-import ran_spec_char_mode from "../../../images/mode-images/ran_spec_char_mode.png";
-import binary_mode from "../../../images/mode-images/binary_mode.png";
-import netflix_mode from "../../../images/mode-images/netflix_mode.png";
-import marvel_mode from "../../../images/mode-images/marvel_mode.png";
-import dc_mode from "../../../images/mode-images/dc_mode.png";
-import anime_mode from "../../../images/mode-images/anime_mode.png";
+import pi_img from "../../../images/mode-images/pi_img.png";
+import num_img from "../../../images/mode-images/num_img.png";
+import letters_img from "../../../images/mode-images/letters_img.png";
+import alphaNum_img from "../../../images/mode-images/alphaNum_img.png";
+import symbol_img from "../../../images/mode-images/symbol_img.png";
+import binary_img from "../../../images/mode-images/binary_img.png";
+import element_img from "../../../images/mode-images/element_img.png";
+import netflix_img from "../../../images/mode-images/netflix_img.png";
+import marvel_img from "../../../images/mode-images/marvel_img.png";
+import dc_img from "../../../images/mode-images/dc_img.png";
+import anime_img from "../../../images/mode-images/anime_img.png";
 
 export default class Mode {
     constructor(ctx, width, height, input, scaleRatio) {
@@ -19,7 +20,7 @@ export default class Mode {
         this.height = height * scaleRatio;
 
         this.currentIndex = 0; // Index of the current mode in the array
-        this.image = this.loadImage(pi_mode); // Load the initial mode image (PI mode)
+        this.image = this.loadImage(pi_img); // Load the initial mode image (PI mode)
 
         // Position of the mode icon on canvas
         this.x = 10 * scaleRatio;
@@ -27,16 +28,18 @@ export default class Mode {
 
         // Mode images and their labels
         this.modeImages = [
-            pi_mode,
-            ran_num_mode,
-            ran_let_mode,
-            ran_let_num_mode,
-            ran_spec_char_mode,
-            binary_mode,
-            netflix_mode,
-            marvel_mode,
-            dc_mode,
-            anime_mode];
+            pi_img,
+            num_img,
+            letters_img,
+            alphaNum_img,
+            symbol_img,
+            binary_img,
+            element_img,
+            netflix_img,
+            marvel_img,
+            dc_img,
+            anime_img
+        ];
 
         this.modeKeys = [
             "PI",
@@ -45,6 +48,7 @@ export default class Mode {
             "AlphaNumeric",
             "Symbols",
             "Binary",
+            "Elements",
             "Netflix",
             "Marvel",
             "DC",

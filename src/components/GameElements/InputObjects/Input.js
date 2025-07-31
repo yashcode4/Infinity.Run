@@ -1,4 +1,4 @@
-import { PI, Numbers, Letters, AlphaNumeric, Symbols, Binary, Netflix, Marvel, DC, Anime } from './Constants.js';
+import { PI, Numbers, Letters, AlphaNumeric, Symbols, Binary, Elements, Netflix, Marvel, DC, Anime } from './Constants.js';
 
 export default class Input {
     constructor(ctx, player, scaleRatio) {
@@ -25,6 +25,7 @@ export default class Input {
             AlphaNumeric,
             Symbols,
             Binary,
+            Elements,
             Netflix,
             Marvel,
             DC,
