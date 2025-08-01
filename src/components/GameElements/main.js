@@ -315,5 +315,22 @@ export default function main() {
     document.addEventListener("keydown", handleStartKey);
 
     // Trigger game reset and re-initialize on window resize
-    window.addEventListener("resize", resetOnResize);
+    window.addEventListener("resize", () => {
+        const container = document.getElementById("game-container");
+
+        // Step 1: Show black screen instantly by applying fade-out class
+        container.classList.add("fade-out");     // makes screen black
+        container.classList.remove("fade-in");   // remove any fade-in effect if present
+
+        // Step 2: Wait for fade-out to complete before resetting game state
+        setTimeout(() => {
+            resetOnResize(); // re-initialize game objects and canvas sizes
+
+            // Step 3: After short pause, fade game screen back in
+            setTimeout(() => {
+                container.classList.remove("fade-out"); // remove black screen
+                container.classList.add("fade-in");     // start fade-in animation
+            }, 300); // pause before fading in again
+        }, 200); // wait for fade-out to finish
+    });
 }

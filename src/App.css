@@ -377,3 +377,19 @@ table tbody tr:hover {
     height: 48px;
   }
 }
+
+/* =========================
+   Fade Animation for Resize
+========================= */
+#game-container {
+  transition: opacity 0.3s ease; /* Smooth fade effect for opacity changes */
+}
+
+#game-container.fade-out {
+  opacity: 0;              /* Hide game by fading to black */
+  pointer-events: none;    /* Disable interactions during fade-out */
+}
+
+#game-container.fade-in {
+  opacity: 1;              /* Show game by fading in */
+}
