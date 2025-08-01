@@ -267,6 +267,11 @@ table tbody tr:hover {
   cursor: pointer;
 }
 
+.table td.rank {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.5rem;
+}
+
 /* Empty Score Box */
 .no-scores-box {
   flex: 1;
