@@ -68,6 +68,14 @@ export default function main() {
     let hasAddEventListenerForRestart = false; // Ensures event listener for restarting is added only once
     let waitingToStart = true; // Indicates if the game is waiting for the player to start
 
+    // Handles game start input on initial load and after resize
+    function handleStartKey(event) {
+        // Start the game when correct key is pressed and it's in waiting state
+        if (waitingToStart && event.key === input.inputToMatch) {
+            waitingToStart = false;
+        }
+    }
+
     // Initialize all game objects
     function createSprites() {
         const playerWidth = PLAYER_WIDTH * scaleRatio;
@@ -143,6 +151,27 @@ export default function main() {
         ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
     }
 
+    // Resets game state and objects when window is resized
+    function resetOnResize() {
+        // Clear both canvases to remove any existing drawings
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+        // Reset essential game state variables
+        previousTime = null;
+        hasAddEventListenerForRestart = false;
+        gameOver = false;
+        waitingToStart = true;
+        gameSpeed = GAME_SPEED_START;
+
+        // Recalculate dimensions and recreate game objects
+        setScreen();
+
+        // Reconnect key listener after recreating input
+        document.removeEventListener("keydown", handleStartKey);
+        document.addEventListener("keydown", handleStartKey);
+    }
+
     // Set up game reset on game over
     function setupGameReset() {
         if (hasAddEventListenerForRestart) return;
@@ -183,7 +212,7 @@ export default function main() {
         input.resetInput();
     }
 
-   // Display "Let's Go!!!" before game starts
+    // Display "Let's Go!!!" before game starts
     function showStartGameText() {
         const fontSize = 95 * scaleRatio;
         ctx.font = `${fontSize}px Pixelify Sans`;
@@ -245,7 +274,7 @@ export default function main() {
             player.update(gameSpeed, frameTimeDelta);
             score.update(frameTimeDelta);
             updateGameSpeed(frameTimeDelta);
-            
+
             mode.modeChangeEnabled = false; // disable mode change during game progress
         }
 
@@ -282,10 +311,9 @@ export default function main() {
     setScreen();
     requestAnimationFrame(gameLoop);
 
-    // Start the game when the right key is pressed and waitingToStart is true
-    document.addEventListener("keydown", (event) => {
-        if (waitingToStart && event.key === input.inputToMatch) {
-            waitingToStart = false;
-        }
-    });
+    // Attach key listener to start the game when player presses the correct key on first load
+    document.addEventListener("keydown", handleStartKey);
+
+    // Trigger game reset and re-initialize on window resize
+    window.addEventListener("resize", resetOnResize);
 }
